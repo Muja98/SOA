@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Data_Service.Service;
 
 namespace Data_Service
 {
@@ -24,7 +25,7 @@ namespace Data_Service
                     webBuilder.UseStartup<Startup>();
                 }).ConfigureServices(services =>
                 {
-                    services.AddHostedService<>();
+                    services.AddHostedService<DataReader>();
                 });
     }
 }
