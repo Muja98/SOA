@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Data_Service.Model
+namespace Sensor_Device_Service.Model
 {
     public class SmartHome
     {
@@ -17,7 +17,7 @@ namespace Data_Service.Model
         public double HomeOffice { get; set; }
         public double Fridge { get; set; }
         public double WineCellar { get; set; }
-        public double GarageDoor  { get; set; }
+        public double GarageDoor { get; set; }
         public double Kitchen1 { get; set; }
         public double Kitchen2 { get; set; }
         public double Kitchen3 { get; set; }

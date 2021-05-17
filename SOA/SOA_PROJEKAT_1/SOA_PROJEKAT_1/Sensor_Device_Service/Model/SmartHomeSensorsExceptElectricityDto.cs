@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Data_Service.Model
+namespace Sensor_Device_Service.Model
 {
     public class SmartHomeSensorsExceptElectricityDto
     {

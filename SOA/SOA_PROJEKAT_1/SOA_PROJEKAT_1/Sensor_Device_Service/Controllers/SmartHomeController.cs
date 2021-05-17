@@ -1,11 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Data_Service.Controllers
+namespace Sensor_Device_Service.Controllers
 {
     [ApiController]
     [Route("api/smartHome")]
@@ -56,7 +55,7 @@ namespace Data_Service.Controllers
             }
             StaticClasses.SmartHomeStaticData.sensorType = sensorType;
             string sensorTypeSeted = "";
-            switch (sensorType) 
+            switch (sensorType)
             {
                 case 1: sensorTypeSeted = "Success. All sensors"; break;
                 case 2: sensorTypeSeted = "Success. Only electricity sensors"; break;
