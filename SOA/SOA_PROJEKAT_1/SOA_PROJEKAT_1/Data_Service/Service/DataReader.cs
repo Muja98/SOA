@@ -35,7 +35,8 @@ namespace Data_Service.Service
             System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
             if (!stoppingToken.IsCancellationRequested)
             {
-                string filePath = "C:/Users/Stefan-PC/Desktop/SOA/SOA/SOA/SOA_PROJEKAT_1/SOA_PROJEKAT_1/Data_Service/Data/SOA_DATA.xlsx";
+                //string filePath = "C:/Users/Stefan-PC/Desktop/SOA/SOA/SOA/SOA_PROJEKAT_1/SOA_PROJEKAT_1/Data_Service/Data/SOA_DATA.xlsx";
+                string filePath = "./Data/SOA_DATA.xlsx";
                 using (var stream = File.Open(filePath, FileMode.Open, FileAccess.Read))
                 {
                     using (var reader = ExcelReaderFactory.CreateReader(stream))
@@ -58,8 +59,10 @@ namespace Data_Service.Service
                                 }
 
                                 SmartHome newSmartHomeObject = mapToModel(currentRow);
-                                _logger.LogInformation(currentRow);
-                                await Task.Delay(1000, stoppingToken);
+                                Object smartHomeObject = setSensorType(newSmartHomeObject);
+                                _logger.LogInformation(smartHomeObject.ToString());
+                                int timeInterval = StaticClasses.SmartHomeStaticData.timeInterval * 1000;
+                                await Task.Delay(timeInterval, stoppingToken);
                             }
                            
                         } while (reader.NextResult());
@@ -105,6 +108,57 @@ namespace Data_Service.Service
             newSmartHomeObject.DewPoint =           splitedDataArray[30] == " " ? 0 : Convert.ToDouble(splitedDataArray[30]);
             newSmartHomeObject.PrecipProbability =  splitedDataArray[31] == " " ? 0 : Convert.ToDouble(splitedDataArray[31]);
             return newSmartHomeObject;
+        }
+
+        public Object setSensorType(SmartHome smartHome)
+        {
+            if (StaticClasses.SmartHomeStaticData.sensorType == 1)
+            {
+                return smartHome;
+            }
+            else if (StaticClasses.SmartHomeStaticData.sensorType == 2)
+            {
+                SmartHomeElectricityDto electricityDto = new SmartHomeElectricityDto();
+                electricityDto.Time = smartHome.Time;
+                electricityDto.Use = smartHome.Use;
+                electricityDto.Gen = smartHome.Gen;
+                electricityDto.HouseOverall = smartHome.HouseOverall;
+                electricityDto.Dishwasher = smartHome.Dishwasher;
+                electricityDto.Furnace1 = smartHome.Furnace1;
+                electricityDto.Furnace2 = smartHome.Furnace2;
+                electricityDto.HomeOffice = smartHome.HomeOffice;
+                electricityDto.Fridge = smartHome.Fridge;
+                electricityDto.WineCellar = smartHome.WineCellar;
+                electricityDto.GarageDoor = smartHome.GarageDoor;
+                electricityDto.Kitchen1 = smartHome.Kitchen1;
+                electricityDto.Kitchen2 = smartHome.Kitchen2;
+                electricityDto.Kitchen3 = smartHome.Kitchen3;
+                electricityDto.Barn = smartHome.Barn;
+                electricityDto.Well = smartHome.Well;
+                electricityDto.Microwave = smartHome.Microwave;
+                electricityDto.LivingRoom = smartHome.LivingRoom;
+                electricityDto.Solar = smartHome.Solar;
+                return electricityDto;
+            }
+            else {
+                SmartHomeSensorsExceptElectricityDto otherSensors = new SmartHomeSensorsExceptElectricityDto();
+                otherSensors.Time = smartHome.Time;
+                otherSensors.Temperature = smartHome.Temperature;
+                otherSensors.Icon = smartHome.Icon;
+                otherSensors.Humidity = smartHome.Humidity;
+                otherSensors.Visibility = smartHome.Visibility;
+                otherSensors.Summary = smartHome.Summary;
+                otherSensors.ApparentTemperature = smartHome.ApparentTemperature;
+                otherSensors.Pressure = smartHome.Pressure;
+                otherSensors.WindSpeed = smartHome.WindSpeed;
+                otherSensors.CloudCover = smartHome.CloudCover;
+                otherSensors.WindBearing = smartHome.WindBearing;
+                otherSensors.PrecipIntensity = smartHome.PrecipIntensity;
+                otherSensors.DewPoint = smartHome.DewPoint;
+                otherSensors.PrecipProbability = smartHome.PrecipProbability;
+                return otherSensors;
+            }
+   
         }
 
         public Task StopAsync(CancellationToken cancellationToken)
