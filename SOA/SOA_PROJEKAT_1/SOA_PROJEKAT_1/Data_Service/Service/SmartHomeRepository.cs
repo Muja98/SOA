@@ -11,7 +11,7 @@ namespace Data_Service.Service
 {
     public class SmartHomeRepository : ISmartHomeRepository
     {
-        private readonly IMongoCollection<Object> _smartHome;
+        private readonly IMongoCollection<SmartHome> _smartHome;
         public readonly ILogger<ISmartHomeRepository> _logger;
 
         public SmartHomeRepository(ISmartHomeMongoDatabaseSettings settings, ILogger<SmartHomeRepository> logger)
@@ -19,24 +19,12 @@ namespace Data_Service.Service
             var client = new MongoClient("mongodb://localhost:27017");
             var database = client.GetDatabase("SmartHome");
 
-            _smartHome = database.GetCollection<Object>("Sensors");
+            _smartHome = database.GetCollection<SmartHome>("Sensors");
             this._logger = logger;
         }
-        public async Task AddDataFromSensors(Object smartHome, string sensorType)
+        public async Task AddDataFromSensors(SmartHome smartHome)
         {
-            _logger.LogInformation(sensorType);
-            int sensor = int.Parse(sensorType);
-            if (sensor == 1)
-            {
-                await _smartHome.InsertOneAsync((SmartHome)smartHome);
-            }
-            else if (sensor == 2)
-            {
-                await _smartHome.InsertOneAsync((SmartHomeElectricityDto)smartHome);
-            }
-            else {
-                await _smartHome.InsertOneAsync((SmartHomeSensorsExceptElectricityDto)smartHome);
-            }
+            await _smartHome.InsertOneAsync(smartHome);
         }
     }
 }

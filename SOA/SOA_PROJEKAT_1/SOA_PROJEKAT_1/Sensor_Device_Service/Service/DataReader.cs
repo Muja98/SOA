@@ -166,10 +166,9 @@ namespace Sensor_Device_Service.Service
         {
             using (var httpClient = new HttpClient())
             {
-                string query = StaticClasses.SmartHomeStaticData.sensorType.ToString();
                 var c = JsonConvert.SerializeObject(smartHome);
                 StringContent content = new StringContent(c, Encoding.UTF8, "application/json");
-                using (var response = await httpClient.PostAsync("http://localhost:9604/api/smartHomeData?sensorType=" + query, content))
+                using (var response = await httpClient.PostAsync("http://localhost:9604/api/smartHomeData", content))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     //return new JsonResult(

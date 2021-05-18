@@ -19,9 +19,9 @@ namespace Data_Service.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddDataFromSensor([FromBody] Object sm, [FromQuery] string sensorType)
+        public async Task<IActionResult> AddDataFromSensor([FromBody] SmartHome sm)
         {
-            await _repository.AddDataFromSensors(sm, sensorType);
+            await _repository.AddDataFromSensors(sm);
             return Ok("Success. Data added");
         }
 
