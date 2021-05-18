@@ -10,6 +10,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Data_Service.Service;
+using Data_Service.DatabaseSettings;
+using Microsoft.Extensions.Options;
 
 namespace Data_Service
 {
@@ -27,9 +30,23 @@ namespace Data_Service
         {
 
             services.AddControllers();
+            services.AddSingleton<ISmartHomeRepository, SmartHomeRepository>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Data_Service", Version = "v1" });
+            });
+            services.Configure<SmartHomeMongoDatabaseSettings>(Configuration.GetSection(nameof(SmartHomeMongoDatabaseSettings)));
+            services.AddSingleton<ISmartHomeMongoDatabaseSettings>(sp =>
+               sp.GetRequiredService<IOptions<SmartHomeMongoDatabaseSettings>>().Value);
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CORS", builder =>
+                {
+                    builder.AllowAnyHeader()
+                   .AllowAnyMethod()
+                   .SetIsOriginAllowed((host) => true)
+                   .AllowCredentials();
+                });
             });
         }
 
@@ -44,6 +61,8 @@ namespace Data_Service
             }
 
             app.UseRouting();
+
+            app.UseCors("CORS");
 
             app.UseAuthorization();
 
