@@ -9,5 +9,9 @@ namespace Data_Service.Service
     public interface ISmartHomeRepository
     {
         Task AddDataFromSensors(SmartHome smartHome);
+        Task<IEnumerable<SmartHome>> GetAll(int from, int to);
+        Task<IEnumerable<SmartHome>> GetByUse(float use, string grSmUse);
+        Task<IEnumerable<SmartHome>> GetByGen(float gen, string grSmGen);
+        Task<IEnumerable<SmartHome>> GetByTemp(float temp, string grSmTemp);
     }
 }

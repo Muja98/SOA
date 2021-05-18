@@ -74,8 +74,23 @@ namespace Sensor_Device_Service.Service
         public SmartHome mapToModel(string dataArray)
         {
             string[] splitedDataArray = dataArray.Split(",");
+
             SmartHome newSmartHomeObject = new SmartHome();
-            newSmartHomeObject.Time = splitedDataArray[0] == " " ? 0 : Convert.ToInt32(splitedDataArray[0]);
+
+            if(splitedDataArray[0] != " ")
+            {
+                DateTimeOffset dateTimeOffset = DateTimeOffset.FromUnixTimeSeconds(Convert.ToInt32(splitedDataArray[0]));
+                DateTime dateTimeCounted = dateTimeOffset.DateTime;
+                newSmartHomeObject.Time = dateTimeCounted;
+            }
+            else
+            {
+
+                DateTime epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+                newSmartHomeObject.Time = epoch;
+            }
+          
+
             newSmartHomeObject.Use = splitedDataArray[1] == " " ? 0 : Convert.ToDouble(splitedDataArray[1]);
             newSmartHomeObject.Gen = splitedDataArray[2] == " " ? 0 : Convert.ToDouble(splitedDataArray[2]);
             newSmartHomeObject.HouseOverall = splitedDataArray[3] == " " ? 0 : Convert.ToDouble(splitedDataArray[3]);

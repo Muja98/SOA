@@ -26,5 +26,76 @@ namespace Data_Service.Service
         {
             await _smartHome.InsertOneAsync(smartHome);
         }
+
+        public async Task<IEnumerable<SmartHome>> GetByUse(float use, string grSmUse)
+        {
+            var query = _smartHome.AsQueryable();
+
+            if (!string.IsNullOrEmpty(grSmUse))
+            {
+                if(grSmUse == "gr")
+                    query = (MongoDB.Driver.Linq.IMongoQueryable<SmartHome>)query.Where(n => n.Use > use);
+                else
+                    query = (MongoDB.Driver.Linq.IMongoQueryable<SmartHome>)query.Where(n => n.Use < use);
+            }
+            else
+            {
+                query = (MongoDB.Driver.Linq.IMongoQueryable<SmartHome>)query.Where(n => n.Use == use);
+            }
+
+            List<SmartHome> result = await query.ToListAsync();
+
+            return result;
+        }
+
+        public async Task<IEnumerable<SmartHome>> GetByGen(float gen, string grSmGen)
+        {
+            var query = _smartHome.AsQueryable();
+
+            if (!string.IsNullOrEmpty(grSmGen))
+            {
+                if (grSmGen == "gr")
+                    query = (MongoDB.Driver.Linq.IMongoQueryable<SmartHome>)query.Where(n => n.Gen > gen);
+                else
+                    query = (MongoDB.Driver.Linq.IMongoQueryable<SmartHome>)query.Where(n => n.Gen < gen);
+            }
+            else
+            {
+                query = (MongoDB.Driver.Linq.IMongoQueryable<SmartHome>)query.Where(n => n.Gen == gen);
+            }
+
+            List<SmartHome> result = await query.ToListAsync();
+
+            return result;
+        }
+
+        public async Task<IEnumerable<SmartHome>> GetByTemp(float temp, string grSmTemp)
+        {
+            var query = _smartHome.AsQueryable();
+
+            if (!string.IsNullOrEmpty(grSmTemp))
+            {
+                if (grSmTemp == "gr")
+                    query = (MongoDB.Driver.Linq.IMongoQueryable<SmartHome>)query.Where(n => n.Temperature > temp);
+                else
+                    query = (MongoDB.Driver.Linq.IMongoQueryable<SmartHome>)query.Where(n => n.Temperature < temp);
+            }
+            else
+            {
+                query = (MongoDB.Driver.Linq.IMongoQueryable<SmartHome>)query.Where(n => n.Temperature == temp);
+            }
+
+            List<SmartHome> result = await query.ToListAsync();
+
+            return result;
+        }
+
+        public async Task<IEnumerable<SmartHome>> GetAll(int from, int to)
+        {
+            var query = _smartHome.AsQueryable();
+            query = (MongoDB.Driver.Linq.IMongoQueryable<SmartHome>)query.OrderByDescending(n => n.Id).Skip(from).Take(to);
+            List<SmartHome> result = await query.ToListAsync();
+            return result;
+        }
     }
 }

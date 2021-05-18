@@ -7,7 +7,7 @@ namespace Sensor_Device_Service.Model
 {
     public class SmartHome
     {
-        public int Time { get; set; }
+        public DateTime Time { get; set; }
         public double Use { get; set; }
         public double Gen { get; set; }
         public double HouseOverall { get; set; }

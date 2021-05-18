@@ -25,5 +25,35 @@ namespace Data_Service.Controllers
             return Ok("Success. Data added");
         }
 
+        [HttpGet]
+        [Route("usage")]
+        public async Task<IActionResult> GetByUse([FromQuery] float use, [FromQuery] string grSmUse)
+        {
+            var result = await _repository.GetByUse(use, grSmUse);
+            return Ok(result);
+        }
+
+        [HttpGet]
+        [Route("generated")]
+        public async Task<IActionResult> GetByGen([FromQuery] float gen, [FromQuery] string grSmGen)
+        {
+            var result = await _repository.GetByGen(gen, grSmGen);
+            return Ok(result);
+        }
+        [HttpGet]
+        [Route("temperature")]
+        public async Task<IActionResult> GetByTemp([FromQuery] float temp, [FromQuery] string grSmTemp)
+        {
+            var result = await _repository.GetByTemp(temp, grSmTemp);
+            return Ok(result);
+        }
+
+        [HttpGet]
+        [Route("allData")]
+        public async Task<IActionResult> GetAll([FromQuery] int from, [FromQuery] int to)
+        {
+            var result = await _repository.GetAll(from, to);
+            return Ok(result);
+        }
     }
 }

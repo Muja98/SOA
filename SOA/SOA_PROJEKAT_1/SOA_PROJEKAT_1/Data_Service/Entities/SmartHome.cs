@@ -2,12 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 namespace Data_Service.Entities
 {
     public class SmartHome
     {
-        public int Time { get; set; }
+
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; set; }
+
+        public DateTime Time { get; set; }
         public double Use { get; set; }
         public double Gen { get; set; }
         public double HouseOverall { get; set; }

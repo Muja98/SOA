@@ -7,7 +7,7 @@ namespace Sensor_Device_Service.Model
 {
     public class SmartHomeSensorsExceptElectricityDto
     {
-        public int Time { get; set; }
+        public DateTime Time { get; set; }
         public double Temperature { get; set; }
         public string Icon { get; set; }
         public double Humidity { get; set; }
