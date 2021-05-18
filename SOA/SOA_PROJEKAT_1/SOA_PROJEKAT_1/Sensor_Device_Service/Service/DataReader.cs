@@ -1,11 +1,15 @@
 ﻿using ExcelDataReader;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using Sensor_Device_Service.Model;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -55,6 +59,7 @@ namespace Sensor_Device_Service.Service
 
                                 SmartHome newSmartHomeObject = mapToModel(currentRow);
                                 Object smartHomeObject = setSensorType(newSmartHomeObject);
+                                await sendData(smartHomeObject);
                                 _logger.LogInformation(smartHomeObject.ToString());
                                 int timeInterval = StaticClasses.SmartHomeStaticData.timeInterval * 1000;
                                 await Task.Delay(timeInterval, stoppingToken);
@@ -155,6 +160,29 @@ namespace Sensor_Device_Service.Service
                 return otherSensors;
             }
 
+        }
+
+        public async Task sendData(Object smartHome)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                string query = StaticClasses.SmartHomeStaticData.sensorType.ToString();
+                var c = JsonConvert.SerializeObject(smartHome);
+                StringContent content = new StringContent(c, Encoding.UTF8, "application/json");
+                using (var response = await httpClient.PostAsync("http://localhost:9604/api/smartHomeData?sensorType=" + query, content))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    //return new JsonResult(
+                    //    new
+                    //    {
+                    //        resp = apiResponse
+                    //    }
+                    //);
+                    _logger.LogInformation(apiResponse);
+                }
+
+            }
+            
         }
 
         public Task StopAsync(CancellationToken cancellationToken)

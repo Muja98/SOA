@@ -8,6 +8,6 @@ namespace Data_Service.Service
 {
     public interface ISmartHomeRepository
     {
-        Task AddDataFromSensors(SmartHome smartHome);
+        Task AddDataFromSensors(Object smartHome, string sensorType);
     }
 }
