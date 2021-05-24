@@ -1,0 +1,279 @@
+{
+	"info": {
+		"_postman_id": "63f6b43a-3ab6-488a-8283-e553d1f40140",
+		"name": "SOA_POSTMAN_PROJEKAT_1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "SENSOR_DEVICE_api/smartHome/interval",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "20",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:7609/api/smartHome/interval",
+				"description": "Menjanje intervala slanja podataka drugom mikroservisu"
+			},
+			"response": []
+		},
+		{
+			"name": "SENSOR_DEVICE_api/smartHome/interval",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:7609/api/smartHome/interval",
+				"description": "Dobijanje informacija na koliko sekundi se podaci salju drugom servisu"
+			},
+			"response": []
+		},
+		{
+			"name": "SENSOR_DEVICE_api/smartHome/sensorType",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "1",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:7609/api/smartHome/sensorType"
+			},
+			"response": []
+		},
+		{
+			"name": "SENSOR_DEVICE_api/smartHome/sensorType",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:7609/api/smartHome/sensorType"
+			},
+			"response": []
+		},
+		{
+			"name": "DATA_/api/smartHomeData",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"time\": \"2021-05-19T19:25:16.683Z\",\r\n  \"use\": 0,\r\n  \"gen\": 0,\r\n  \"houseOverall\": 0,\r\n  \"dishwasher\": 0,\r\n  \"furnace1\": 0,\r\n  \"furnace2\": 0,\r\n  \"homeOffice\": 0,\r\n  \"fridge\": 0,\r\n  \"wineCellar\": 0,\r\n  \"garageDoor\": 0,\r\n  \"kitchen1\": 0,\r\n  \"kitchen2\": 0,\r\n  \"kitchen3\": 0,\r\n  \"barn\": 0,\r\n  \"well\": 0,\r\n  \"microwave\": 0,\r\n  \"livingRoom\": 0,\r\n  \"solar\": 0,\r\n  \"temperature\": 0,\r\n  \"icon\": \"string\",\r\n  \"humidity\": 0,\r\n  \"visibility\": 0,\r\n  \"summary\": \"string\",\r\n  \"apparentTemperature\": 0,\r\n  \"pressure\": 0,\r\n  \"windSpeed\": 0,\r\n  \"cloudCover\": \"string\",\r\n  \"windBearing\": 0,\r\n  \"precipIntensity\": 0,\r\n  \"dewPoint\": 0,\r\n  \"precipProbability\": 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:9604/api/smartHomeData"
+			},
+			"response": []
+		},
+		{
+			"name": "DATA_/api/smartHomeData​/usage?use=1&grSmUse=gr",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9604/api/smartHomeData/usage?use=1&grSmUse=gr",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9604",
+					"path": [
+						"api",
+						"smartHomeData",
+						"usage"
+					],
+					"query": [
+						{
+							"key": "use",
+							"value": "1"
+						},
+						{
+							"key": "grSmUse",
+							"value": "gr"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DATA_/api/smartHomeData​/allData?from=0&to=5",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9604/api/smartHomeData/allData?from=0&to=5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9604",
+					"path": [
+						"api",
+						"smartHomeData",
+						"allData"
+					],
+					"query": [
+						{
+							"key": "from",
+							"value": "0"
+						},
+						{
+							"key": "to",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DATA_/api/smartHomeData​/generated?gen=1&grSmUse=gr",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9604/api/smartHomeData/generated?gen=0.2&grSmGen=sm",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9604",
+					"path": [
+						"api",
+						"smartHomeData",
+						"generated"
+					],
+					"query": [
+						{
+							"key": "gen",
+							"value": "0.2"
+						},
+						{
+							"key": "grSmGen",
+							"value": "sm"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DATA_/api/smartHomeData​/temperature?temp=1&grSmUse=gr",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9604/api/smartHomeData/temperature?temp=36&grSmTemp=gr",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9604",
+					"path": [
+						"api",
+						"smartHomeData",
+						"temperature"
+					],
+					"query": [
+						{
+							"key": "temp",
+							"value": "36"
+						},
+						{
+							"key": "grSmTemp",
+							"value": "gr"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
