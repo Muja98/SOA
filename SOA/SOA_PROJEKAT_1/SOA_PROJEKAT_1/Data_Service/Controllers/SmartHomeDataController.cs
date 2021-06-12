@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Data_Service.Entities;
+using System.Text.Json;
+
 namespace Data_Service.Controllers
 {
     [ApiController]
@@ -12,16 +14,21 @@ namespace Data_Service.Controllers
     public class SmartHomeDataController : Controller
     {
         private readonly ISmartHomeRepository _repository;
+        private readonly IMessageService _messageService;
 
-        public SmartHomeDataController(ISmartHomeRepository repository)
+        public SmartHomeDataController(ISmartHomeRepository repository, IMessageService messageService)
         {
             _repository = repository;
+            _messageService = messageService;
         }
 
         [HttpPost]
         public async Task<IActionResult> AddDataFromSensor([FromBody] SmartHome sm)
         {
             await _repository.AddDataFromSensors(sm);
+            string message = JsonSerializer.Serialize(sm);
+            double temperature = sm.Temperature;
+            _messageService.Enqueue(temperature.ToString());
             return Ok("Success. Data added");
         }
 

@@ -5998,19 +5998,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Stefan-PC\\.nuget\\packages\\": {}
+    "C:\\Users\\Goran\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Stefan-PC\\Desktop\\SOA\\SOA\\SOA\\SOA_SEMINARSKI\\SOA_Seminarski\\Sensor_Device_Service\\Sensor_Device_Service.csproj",
+      "projectUniqueName": "C:\\Users\\Goran\\Servosno_Orijentisane_Arhitekture_Projekti\\SOA\\SOA\\SOA_SEMINARSKI\\SOA_Seminarski\\Sensor_Device_Service\\Sensor_Device_Service.csproj",
       "projectName": "Sensor_Device_Service",
-      "projectPath": "C:\\Users\\Stefan-PC\\Desktop\\SOA\\SOA\\SOA\\SOA_SEMINARSKI\\SOA_Seminarski\\Sensor_Device_Service\\Sensor_Device_Service.csproj",
-      "packagesPath": "C:\\Users\\Stefan-PC\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Stefan-PC\\Desktop\\SOA\\SOA\\SOA\\SOA_SEMINARSKI\\SOA_Seminarski\\Sensor_Device_Service\\obj\\",
+      "projectPath": "C:\\Users\\Goran\\Servosno_Orijentisane_Arhitekture_Projekti\\SOA\\SOA\\SOA_SEMINARSKI\\SOA_Seminarski\\Sensor_Device_Service\\Sensor_Device_Service.csproj",
+      "packagesPath": "C:\\Users\\Goran\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Goran\\Servosno_Orijentisane_Arhitekture_Projekti\\SOA\\SOA\\SOA_SEMINARSKI\\SOA_Seminarski\\Sensor_Device_Service\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Stefan-PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Goran\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -6075,7 +6075,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.104\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   },

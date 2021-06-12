@@ -9,6 +9,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sensor_Device_Service", "Se
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{9B2B1836-4207-4F08-A129-037638584767}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Analytics_Service", "Analytics_Service\Analytics_Service.csproj", "{46B6BF8C-09F8-4755-BF2A-C7CCBA3857B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Command_Service", "Command_Service\Command_Service.csproj", "{789C0D1A-9786-4BAA-91A4-D554FEAFD950}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{9B2B1836-4207-4F08-A129-037638584767}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B2B1836-4207-4F08-A129-037638584767}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B2B1836-4207-4F08-A129-037638584767}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46B6BF8C-09F8-4755-BF2A-C7CCBA3857B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46B6BF8C-09F8-4755-BF2A-C7CCBA3857B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46B6BF8C-09F8-4755-BF2A-C7CCBA3857B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46B6BF8C-09F8-4755-BF2A-C7CCBA3857B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{789C0D1A-9786-4BAA-91A4-D554FEAFD950}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{789C0D1A-9786-4BAA-91A4-D554FEAFD950}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{789C0D1A-9786-4BAA-91A4-D554FEAFD950}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{789C0D1A-9786-4BAA-91A4-D554FEAFD950}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

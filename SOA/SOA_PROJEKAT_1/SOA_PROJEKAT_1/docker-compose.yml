@@ -8,14 +8,51 @@ services:
       dockerfile: Data_Service/Dockerfile
     depends_on:
       - mongo
+    restart: always
   sensor_device_service:
     image: ${DOCKER_REGISTRY-}sensordeviceservice
     build:
       context: .
       dockerfile: Sensor_Device_Service/Dockerfile
-
+    restart: always
   mongo:
     image: mongo
     restart: always
     ports:
       - 27117:27017
+  mongoAnalytics:
+    image: mongo
+    restart: always
+    ports:
+      - 27119:27017
+
+  rabbitmq: # login guest:guest
+    image: rabbitmq:3-management
+    hostname: "rabbitmq"
+    labels:
+      NAME: "rabbitmq"
+    ports:
+    - "4369:4369"
+    - "5671:5671"
+    - "5672:5672"
+    - "25672:25672"
+    - "15671:15671"
+    - "15672:15672"
+  analytics_service:
+    image: ${DOCKER_REGISTRY-}analyticsservice
+    build:
+      context: .
+      dockerfile: Analytics_Service/Dockerfile
+    depends_on: 
+    - rabbitmq
+    - mongoAnalytics
+
+  command_service:
+    image: ${DOCKER_REGISTRY-}commandservice
+    build:
+      context: .
+      dockerfile: Command_Service/Dockerfile
+    depends_on: 
+    - rabbitmq
+
+
