@@ -1,0 +1,21 @@
+@App:name("TemperatureApp")
+
+
+@App:description("Description of the plan")
+
+@source(type = 'http', receiver.url = "http://0.0.0.0:8006/temperature", @map(type = 'json'))
+define stream TemperatureStream (temperature double);
+
+--@sink(type='log', prefix='LOGGER')
+--define stream OutputStream(temperature double, averageTemperature double);
+
+@sink(type='http', publisher.url='http://192.168.0.104:50487/api/analytics',
+      method='POST', headers='Content-type:application/json',
+      basic.auth.enabled='false',
+      @map(type='json'))
+define stream OutputStream(temperature double, averageTemperature double);
+
+@info(name='AverageTemperatureQuery')
+from TemperatureStream#window.length(15)
+select temperature, avg(temperature) as averageTemperature
+insert into OutputStream;

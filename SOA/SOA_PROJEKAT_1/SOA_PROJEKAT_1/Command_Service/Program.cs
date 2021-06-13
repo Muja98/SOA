@@ -1,5 +1,7 @@
+using Command_Service.Service;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
@@ -21,6 +23,9 @@ namespace Command_Service
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                }).ConfigureServices(services =>
+                {
+                    services.AddHostedService<DataReader>();
                 });
     }
 }

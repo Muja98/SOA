@@ -1,4 +1,5 @@
-﻿using Analytics_Service.Service;
+﻿using Analytics_Service.Models;
+using Analytics_Service.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -21,13 +22,16 @@ namespace Analytics_Service.Controllers
             _messageService = messageService;
         }
         [HttpPost]
-        public async Task<IActionResult> AddDataFromSensor([FromBody] string result)
+        public async Task<IActionResult> AddDataFromSensor([FromBody] SiddhiEvent result)
         {
-            if (result == "Temperatura je u redu")
+            //Console.WriteLine("Ovo je rezultat" + result.Event.temperature + " - " + result.Event.averageTemperature);
+            if (result.Event.averageTemperature < 38.0)
             {
                 _messageService.Enqueue("0");
                 return Ok("Nema potrebe za promenom");
-            } else {
+            }
+            else
+            {
                 _messageService.Enqueue("1");
                 return Ok("Promenjena temperatura");
             }

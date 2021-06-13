@@ -37,7 +37,7 @@ namespace Analytics_Service.Service
                                 basicProperties: null,
                                 body: body);
 
-            Console.WriteLine(" [x] Published {0} to RabbitMQ", messageString);
+            Console.WriteLine(" [x] Published analytics {0} to RabbitMQ", messageString);
             return true;
         }
     }

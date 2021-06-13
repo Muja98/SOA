@@ -49,14 +49,17 @@ namespace Command_Service.Service
                 {
                     var body = ea.Body.ToArray();
                     string message = System.Text.Encoding.UTF8.GetString(body);
-                    Console.WriteLine(" [x] Received from Rabbit data reader: {0}", message);
+                    Console.WriteLine(" [x] Received analytics data from Rabbit reader: {0}", message);
                     int msg = int.Parse(message);
                     if (msg == 1)
                     {
                         await sendCommandToDeviceService(3);
                     }
+                    else {
+                        await sendCommandToDeviceService(5);
+                    }
                 };
-                channel.BasicConsume(queue: "hello",
+                channel.BasicConsume(queue: "analyticstocommand",
                                         autoAck: true,
                                         consumer: consumer);
             }
@@ -75,7 +78,7 @@ namespace Command_Service.Service
             {
                 var c = JsonConvert.SerializeObject(interval);
                 StringContent content = new StringContent(c, Encoding.UTF8, "application/json");
-                using (var response = await httpClient.PostAsync("http://Sensor_Device_Service:80/api/smartHome/interval", content))//localhost:9604
+                using (var response = await httpClient.PutAsync("http://Sensor_Device_Service:80/api/smartHome/interval", content))//localhost:9604
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     //return new JsonResult(
