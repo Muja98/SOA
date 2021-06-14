@@ -27,3 +27,10 @@ services:
     ports:
       - "80"
 
+
+  api_gateway_service:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "80"
+

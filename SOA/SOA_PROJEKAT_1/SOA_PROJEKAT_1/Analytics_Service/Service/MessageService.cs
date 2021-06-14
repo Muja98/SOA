@@ -1,7 +1,9 @@
-﻿using RabbitMQ.Client;
+﻿using Newtonsoft.Json;
+using RabbitMQ.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -39,6 +41,21 @@ namespace Analytics_Service.Service
 
             Console.WriteLine(" [x] Published analytics {0} to RabbitMQ", messageString);
             return true;
+        }
+
+        public async Task<string> sendActionToCommandService(string action)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                var c = JsonConvert.SerializeObject(action);
+                StringContent content = new StringContent(c, Encoding.UTF8, "application/json");
+                using (var response = await httpClient.PostAsync("http://Command_Service:80/api/command", content))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    return apiResponse;
+                }
+
+            }
         }
     }
 }
