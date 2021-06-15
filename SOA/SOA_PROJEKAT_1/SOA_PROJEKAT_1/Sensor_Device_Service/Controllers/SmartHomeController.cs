@@ -17,9 +17,9 @@ namespace Sensor_Device_Service.Controllers
         public IActionResult setTimeInterval([FromBody] int timeInterval)
         {
             StaticClasses.SmartHomeStaticData.timeInterval = timeInterval;
-            Console.WriteLine("Time interval seted" + StaticClasses.SmartHomeStaticData.timeInterval);
+            Console.WriteLine("Time interval setted to: " + StaticClasses.SmartHomeStaticData.timeInterval);
 
-            return Ok("Success");
+            return Ok("Time interval setted to: " + StaticClasses.SmartHomeStaticData.timeInterval);
         }
 
         [HttpGet]

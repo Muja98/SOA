@@ -93,7 +93,7 @@ namespace Data_Service.Service
         public async Task<IEnumerable<SmartHome>> GetAll(int from, int to)
         {
             var query = _smartHome.AsQueryable();
-            query = (MongoDB.Driver.Linq.IMongoQueryable<SmartHome>)query.OrderByDescending(n => n.Id).Skip(from).Take(to);
+            query = (MongoDB.Driver.Linq.IMongoQueryable<SmartHome>)query.OrderByDescending(n => n.Id).Skip(from).Take(to - from);
             List<SmartHome> result = await query.ToListAsync();
             return result;
         }

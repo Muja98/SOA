@@ -16,9 +16,11 @@ namespace Command_Service.Service
     public class DataReader : IHostedService
     {
         public readonly ILogger<DataReader> _logger;
-        public DataReader(ILogger<DataReader> logger)
+        private readonly ICommandService _commandService;
+        public DataReader(ILogger<DataReader> logger, ICommandService commandService)
         {
             this._logger = logger;
+            this._commandService = commandService;
         }
         public async Task StartAsync(CancellationToken cancellationToken)
         {
@@ -53,10 +55,14 @@ namespace Command_Service.Service
                     int msg = int.Parse(message);
                     if (msg == 1)
                     {
-                        await sendCommandToDeviceService(3);
+                        string result = await _commandService.setTimeInterval(3);
+                        StaticClasses.CurrentAction.currentAction = result;
+
                     }
                     else {
-                        await sendCommandToDeviceService(5);
+                        string result = await _commandService.setTimeInterval(5);
+                        StaticClasses.CurrentAction.currentAction = result;
+
                     }
                 };
                 channel.BasicConsume(queue: "analyticstocommand",
@@ -81,12 +87,6 @@ namespace Command_Service.Service
                 using (var response = await httpClient.PutAsync("http://Sensor_Device_Service:80/api/smartHome/interval", content))//localhost:9604
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    //return new JsonResult(
-                    //    new
-                    //    {
-                    //        resp = apiResponse
-                    //    }
-                    //);
                     _logger.LogInformation(apiResponse);
                 }
 
