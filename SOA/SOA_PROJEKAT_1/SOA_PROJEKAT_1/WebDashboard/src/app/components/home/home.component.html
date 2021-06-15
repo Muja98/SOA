@@ -1,4 +1,4 @@
-<div class="container shadow-lg rounded" style="background-color: white; min-height: 800px;">
+<div class="container shadow-lg rounded" style="background-color: white; min-height: 900px;">
     <div class="row p-2 pt-4">
 
         <!--LOGS-->
@@ -16,18 +16,151 @@
                     <div class="col-4 d-flex justify-content-center"><p>12:45</p></div>
                     <div style="cursor: pointer;" (click)="open(content)" class="col-8 d-flex justify-content-center"><p>time:123, number:"sadwd"</p></div>
                 </div>
-
+                <div class="row">
+                    <div class="col-4 d-flex justify-content-center"><p>12:45</p></div>
+                    <div style="cursor: pointer;" (click)="open(content)" class="col-8 d-flex justify-content-center"><p>time:123, number:"sadwd"</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-4 d-flex justify-content-center"><p>12:45</p></div>
+                    <div style="cursor: pointer;" (click)="open(content)" class="col-8 d-flex justify-content-center"><p>time:123, number:"sadwd"</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-4 d-flex justify-content-center"><p>12:45</p></div>
+                    <div style="cursor: pointer;" (click)="open(content)" class="col-8 d-flex justify-content-center"><p>time:123, number:"sadwd"</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-4 d-flex justify-content-center"><p>12:45</p></div>
+                    <div style="cursor: pointer;" (click)="open(content)" class="col-8 d-flex justify-content-center"><p>time:123, number:"sadwd"</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-4 d-flex justify-content-center"><p>12:45</p></div>
+                    <div style="cursor: pointer;" (click)="open(content)" class="col-8 d-flex justify-content-center"><p>time:123, number:"sadwd"</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-4 d-flex justify-content-center"><p>12:45</p></div>
+                    <div style="cursor: pointer;" (click)="open(content)" class="col-8 d-flex justify-content-center"><p>time:123, number:"sadwd"</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-4 d-flex justify-content-center"><p>12:45</p></div>
+                    <div style="cursor: pointer;" (click)="open(content)" class="col-8 d-flex justify-content-center"><p>time:123, number:"sadwd"</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-4 d-flex justify-content-center"><p>12:45</p></div>
+                    <div style="cursor: pointer;" (click)="open(content)" class="col-8 d-flex justify-content-center"><p>time:123, number:"sadwd"</p></div>
+                </div>
             </div>
         </div>
 
+        <div class="col-4">
+            <div class="col d-flex align-items-center justify-content-center">
+                <h2 style="cursor: context-menu;">Change time reading</h2>
+            </div>
+            <hr>
+            <div class="col pt-1">
+                <div class="row justify-content-center">
+                    <div class="col-6 d-flex justify-content-center"><p style="font-weight: 600; font-size: 22px;">Time in seconds:</p></div>
+                    <div class="col-4"><input type="number" name="num" min="1" max="30" style="width: 100px;" class="form-control" aria-describedby="basic-addon1"></div>
+                </div>
+                
+                <div class="row pt-2">
+                    <div class="col d-flex justify-content-center"><button type="button" class="btn btn-outline-dark">Change time</button></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-4">
+            <div class="col d-flex align-items-center justify-content-center">
+                <h2 style="cursor: context-menu;">Current time of reading</h2>
+            </div>
+            <hr>
+            <div class="col d-flex justify-content-center align-items-center pt-1">
+                <div class="row justify-content-center">
+                    <h1>4s</h1>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <!--(change)="handleGetLevelFromInput($event.target.value)"-->
+    <!--TABLE-->
+    <div class="row justify-content-between pt-5">
+        <div class="col-3">
+            <p style="font-weight: 500; font-size: 22px;">Get data by:</p>
+            <select  (change)="handleGetDataBy($event.target.value)"  class="custom-select form-select" id="inputGroupSelect01">
+                <option selected value="">Select type of data...</option>
+                <option value="1">Electricity Usage</option>
+                <option value="2">Generated Electricity</option>
+                <option value="3">Temperature</option>
+                <option value="4">Get All Data</option>
+            </select>
+        </div>
+        <div  class="col-3">
+            <p  style="font-weight: 500; font-size: 22px;">Order by:</p>
+            <select [disabled]="disableSelect"  class="custom-select form-select" id="inputGroupSelect01">
+                <option selected value="">Select order...</option>
+                <option value="Advanced">Greather than </option>
+                <option value="Advanced">Smaller than</option>
+            </select>
+        </div>
+
+        <div class="col-2">
+            <p style="font-weight: 500; font-size: 22px;">Value:</p>
+            <input [disabled]="disableSelect" type="text" onkeyup="this.value=this.value.replace(/[^\d]/,'')"  style="width: 150px;" plac class="form-control" placeholder="KW, C" aria-describedby="basic-addon1">
+        </div>
         
+        <div class="col-3 d-flex align-items-center pt-5 " >
+            <button type="button" class="btn btn-outline-dark">Find data</button>
+        </div>
     </div>
 
+    <!--TABLE-->
+    <div class="row p-2 pt-5">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                    <th scope="col">Handle</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td colspan="2">Larry the Bird</td>
+                    <td>@twitter</td>
+                  </tr>
+                </tbody>
+              </table>
+          </div>
+    </div>
+
+    <div class="container d-flex justify-content-center">
+        <ngb-pagination [(page)]="page" [collectionSize]="itemsCount" (pageChange)="handlePageNumber(page)"  [pageSize]="5"  aria-label="Default pagination">
+       
+        </ngb-pagination>
+    </div>
+
+    
     <!--MODAL-->
     <ng-template #content let-c="close" let-d="dismiss">
         <div class="modal-header">
-          <h3 class="modal-title" id="modal-basic-title">Data from sensor</h3>
-          <button type="button" class="close btn btn-outline-danger" aria-label="Close" (click)="d('Cross click')">
+          <h3 class="modal-title" id="modal-basic-title">Data from sensor at: 12:45</h3>
+          <button type="button" class="close btn btn-outline-dark" aria-label="Close" (click)="d('Cross click')">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
