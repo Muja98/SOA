@@ -56,3 +56,10 @@ services:
     - rabbitmq
 
 
+
+  api_gateway_service:
+    image: ${DOCKER_REGISTRY-}apigatewayservice
+    build:
+      context: .
+      dockerfile: API_Gateway_Service/Dockerfile
+

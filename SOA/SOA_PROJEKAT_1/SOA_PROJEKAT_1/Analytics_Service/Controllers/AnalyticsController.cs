@@ -21,6 +21,7 @@ namespace Analytics_Service.Controllers
         {
             _messageService = messageService;
         }
+
         [HttpPost]
         public async Task<IActionResult> AddDataFromSensor([FromBody] SiddhiEvent result)
         {
@@ -28,12 +29,14 @@ namespace Analytics_Service.Controllers
             if (result.Event.averageTemperature < 38.0)
             {
                 _messageService.Enqueue("0");
-                return Ok("Nema potrebe za promenom");
+                string response = await _messageService.sendActionToCommandService("Interval setted to 5");
+                return Ok(response);
             }
             else
             {
                 _messageService.Enqueue("1");
-                return Ok("Promenjena temperatura");
+                string response = await _messageService.sendActionToCommandService("Interval setted to 3");
+                return Ok(response);
             }
         }
     }
