@@ -63,7 +63,7 @@ namespace API_Gateway_Service.Service
             {
                 var c = JsonConvert.SerializeObject(null);
                 StringContent content = new StringContent(c, Encoding.UTF8, "application/json");
-                using (var response = await httpClient.GetAsync("http://Data_Service:80/api/smartHomeData/temperature?gen=" + temp + "&grSmTemp=" + grSmTemp))
+                using (var response = await httpClient.GetAsync("http://Data_Service:80/api/smartHomeData/temperature?temp=" + temp + "&grSmTemp=" + grSmTemp))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     return JsonConvert.DeserializeObject<IEnumerable<SmartHome>>(apiResponse);
@@ -87,13 +87,43 @@ namespace API_Gateway_Service.Service
             }
         }
 
-        public async Task<string> setCurrentCommand(string action)
+        public async Task<string> setTimeInterval(int interval)
         {
             using (var httpClient = new HttpClient())
             {
-                var c = JsonConvert.SerializeObject(action);
+                var c = JsonConvert.SerializeObject(interval);
                 StringContent content = new StringContent(c, Encoding.UTF8, "application/json");
-                using (var response = await httpClient.PostAsync("http://Command_Service:80/api/command", content))
+                using (var response = await httpClient.PostAsync("http://Command_Service:80/api/command/setTimeInterval", content))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    return apiResponse;
+                }
+
+            }
+        }
+
+        public async Task<string> getTimeInterval()
+        {
+            using (var httpClient = new HttpClient())
+            {
+                var c = JsonConvert.SerializeObject(null);
+                StringContent content = new StringContent(c, Encoding.UTF8, "application/json");
+                using (var response = await httpClient.GetAsync("http://Command_Service:80/api/command/getTimeInterval"))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    return apiResponse;
+                }
+
+            }
+        }
+
+        public async Task<string> getLastAction()
+        {
+            using (var httpClient = new HttpClient())
+            {
+                var c = JsonConvert.SerializeObject(null);
+                StringContent content = new StringContent(c, Encoding.UTF8, "application/json");
+                using (var response = await httpClient.GetAsync("http://Command_Service:80/api/command/getLastAction"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     return apiResponse;

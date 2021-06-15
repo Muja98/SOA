@@ -13,6 +13,8 @@ namespace API_Gateway_Service.Service
         Task<IEnumerable<SmartHome>> GetByGen(float gen, string grSmGen);
         Task<IEnumerable<SmartHome>> GetByTemp(float temp, string grSmTemp);
         Task<IEnumerable<SmartHome>> GetAll(int from, int to);
-        Task<string> setCurrentCommand(string action);
+        Task<string> setTimeInterval(int interval);
+        Task<string> getTimeInterval();
+        Task<string> getLastAction();
     }
 }

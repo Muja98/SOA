@@ -20,9 +20,26 @@ namespace API_Gateway_Service.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> setCurrentAction([FromBody] string action)
+        [Route("setTimeInterval")]
+        public async Task<IActionResult> setTimeInterval([FromBody] int interval)
         {
-            string result = await _gatewayService.setCurrentCommand(action);
+            string result = await _gatewayService.setTimeInterval(interval);
+            return Ok(result);
+        }
+
+        [HttpGet]
+        [Route("getTimeInterval")]
+        public async Task<IActionResult> getTimeInterval()
+        {
+            string result = await _gatewayService.getTimeInterval();
+            return Ok(result);
+        }
+
+        [HttpGet]
+        [Route("getLastAction")]
+        public async Task<IActionResult> getLastAction()
+        {
+            string result = await _gatewayService.getLastAction();
             return Ok(result);
         }
 

@@ -1,3 +1,4 @@
+using Command_Service.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -27,6 +28,7 @@ namespace Command_Service
         {
 
             services.AddControllers();
+            services.AddSingleton<ICommandService, CommandService>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Command_Service", Version = "v1" });
