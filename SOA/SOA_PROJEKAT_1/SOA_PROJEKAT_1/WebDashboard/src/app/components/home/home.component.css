@@ -1,0 +1,5 @@
+.scrollLogs {
+  overflow: auto;
+  overflow-x: hidden;
+  max-height: 240px;
+}
