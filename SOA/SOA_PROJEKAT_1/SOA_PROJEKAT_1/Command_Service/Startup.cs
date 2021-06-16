@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Command_Service.HubConfig;
 
 namespace Command_Service
 {
@@ -29,9 +30,23 @@ namespace Command_Service
 
             services.AddControllers();
             services.AddSingleton<ICommandService, CommandService>();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CORS", builder =>
+                {
+                    builder.AllowAnyHeader()
+                   .AllowAnyMethod()
+                   .SetIsOriginAllowed((host) => true)
+                   .AllowCredentials();
+                });
+            });
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Command_Service", Version = "v1" });
+            });
+            services.AddSignalR(options =>
+            {
+                options.EnableDetailedErrors = true;
             });
         }
 
@@ -47,11 +62,14 @@ namespace Command_Service
 
             app.UseRouting();
 
+            app.UseCors("CORS");
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<NotificationHub>("notification");
             });
         }
     }

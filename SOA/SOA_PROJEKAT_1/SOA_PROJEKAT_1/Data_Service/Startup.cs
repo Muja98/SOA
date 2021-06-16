@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using Data_Service.Service;
 using Data_Service.DatabaseSettings;
 using Microsoft.Extensions.Options;
+using Data_Service.HubConfig;
 
 namespace Data_Service
 {
@@ -49,6 +50,10 @@ namespace Data_Service
                    .AllowCredentials();
                 });
             });
+            services.AddSignalR(options =>
+            {
+                options.EnableDetailedErrors = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -70,6 +75,7 @@ namespace Data_Service
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<DataFromSensorHub>("sensorData");
             });
         }
     }

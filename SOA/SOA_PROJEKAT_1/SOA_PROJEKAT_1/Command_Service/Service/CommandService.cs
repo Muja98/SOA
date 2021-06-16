@@ -10,6 +10,9 @@ namespace Command_Service.Service
 {
     public class CommandService : ICommandService
     {
+      
+
+   
         public async Task<string> setTimeInterval(int interval)
         {
             using (var httpClient = new HttpClient())

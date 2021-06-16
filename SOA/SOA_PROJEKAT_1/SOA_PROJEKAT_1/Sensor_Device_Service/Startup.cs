@@ -27,6 +27,16 @@ namespace Sensor_Device_Service
         {
 
             services.AddControllers();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CORS", builder =>
+                {
+                    builder.AllowAnyHeader()
+                   .AllowAnyMethod()
+                   .SetIsOriginAllowed((host) => true)
+                   .AllowCredentials();
+                });
+            });
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Sensor_Device_Service", Version = "v1" });
@@ -44,6 +54,8 @@ namespace Sensor_Device_Service
             }
 
             app.UseRouting();
+
+            app.UseCors("CORS");
 
             app.UseAuthorization();
 

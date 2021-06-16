@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Data_Service.Entities;
 using System.Text.Json;
+using Microsoft.AspNetCore.SignalR;
 
 namespace Data_Service.Controllers
 {

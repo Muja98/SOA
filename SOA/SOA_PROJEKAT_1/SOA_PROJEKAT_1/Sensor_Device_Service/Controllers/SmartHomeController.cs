@@ -19,7 +19,7 @@ namespace Sensor_Device_Service.Controllers
             StaticClasses.SmartHomeStaticData.timeInterval = timeInterval;
             Console.WriteLine("Time interval setted to: " + StaticClasses.SmartHomeStaticData.timeInterval);
 
-            return Ok("Time interval setted to: " + StaticClasses.SmartHomeStaticData.timeInterval);
+            return Ok(StaticClasses.SmartHomeStaticData.timeInterval);
         }
 
         [HttpGet]

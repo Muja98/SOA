@@ -10,6 +10,8 @@ using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.SignalR;
+using Command_Service.HubConfig;
 
 namespace Command_Service.Service
 {
@@ -17,10 +19,12 @@ namespace Command_Service.Service
     {
         public readonly ILogger<DataReader> _logger;
         private readonly ICommandService _commandService;
-        public DataReader(ILogger<DataReader> logger, ICommandService commandService)
+        private readonly IHubContext<NotificationHub> _hub;
+        public DataReader(ILogger<DataReader> logger, ICommandService commandService, IHubContext<NotificationHub> hub)
         {
             this._logger = logger;
             this._commandService = commandService;
+            _hub = hub;
         }
         public async Task StartAsync(CancellationToken cancellationToken)
         {
@@ -57,11 +61,12 @@ namespace Command_Service.Service
                     {
                         string result = await _commandService.setTimeInterval(3);
                         StaticClasses.CurrentAction.currentAction = result;
+                        _ = _hub.Clients.Group("notificationGroup").SendAsync("ReceiveNotification", "Interval is seted by siddhi to: " + 3);
 
                     }
                     else {
                         string result = await _commandService.setTimeInterval(5);
-                        StaticClasses.CurrentAction.currentAction = result;
+                        _ = _hub.Clients.Group("notificationGroup").SendAsync("ReceiveNotification", "Interval is seted by siddhi to: " + 5);
 
                     }
                 };

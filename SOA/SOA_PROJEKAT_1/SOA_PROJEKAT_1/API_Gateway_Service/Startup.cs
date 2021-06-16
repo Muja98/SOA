@@ -1,3 +1,4 @@
+using API_Gateway_Service.HubConfig;
 using API_Gateway_Service.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -29,9 +30,23 @@ namespace API_Gateway_Service
 
             services.AddControllers();
             services.AddSingleton<IGatewayService, GatewayService>();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CORS", builder =>
+                {
+                    builder.AllowAnyHeader()
+                   .AllowAnyMethod()
+                   .SetIsOriginAllowed((host) => true)
+                   .AllowCredentials();
+                });
+            });
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "API_Gateway_Service", Version = "v1" });
+            });
+            services.AddSignalR(options =>
+            {
+                options.EnableDetailedErrors = true;
             });
         }
 
@@ -46,12 +61,19 @@ namespace API_Gateway_Service
             }
 
             app.UseRouting();
+            app.UseCors("CORS");
 
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+                endpoints.MapHub<NotificationHub>("notificationUser");
             });
         }
     }

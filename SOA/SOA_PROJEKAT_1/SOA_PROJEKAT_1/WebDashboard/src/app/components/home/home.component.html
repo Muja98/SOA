@@ -1,0 +1,257 @@
+<div class="container shadow-lg rounded" style="background-color: white; min-height: 900px;">
+    <div class="row p-2 pt-4">
+
+        <!--LOGS-->
+        <div class="col-4 ">
+            <div class="col d-flex align-items-center justify-content-center">
+                <h2 style="cursor: context-menu;">Logs</h2>
+            </div>
+            <hr>
+            <div class="col scrollLogs">
+                <div class="row">
+                    <div class="col-4 d-flex justify-content-center"><p>Time</p></div>
+                    <div class="col-8 d-flex justify-content-center"><p>Payload</p></div>
+                </div>
+                <div class="row" *ngFor="let smartHomeLogItem of templogsSmartHomeArray">
+                    <div class="col-4 d-flex justify-content-center " style="padding-left: 50px;"><p>{{smartHomeLogItem.time}}</p></div>
+                    <div style="cursor: pointer;" (click)="handleShowSensorDataInModal(smartHomeLogItem,content)" class="col-8 d-flex justify-content-center"><p class="cut-text">[{{smartHomeLogItem.use + smartHomeLogItem.gen + smartHomeLogItem.houseOverall}}...  </p></div>
+                </div>
+             
+            </div>
+        </div>
+
+        <div class="col-4">
+            <div class="col d-flex align-items-center justify-content-center">
+                <h2 style="cursor: context-menu;">Change time reading</h2>
+            </div>
+            <hr>
+            <div class="col pt-1">
+                <div class="row justify-content-center">
+                    <div class="col-6 d-flex justify-content-center"><p style="font-weight: 600; font-size: 22px;">Time in seconds:</p></div>
+                    <div class="col-4"><input type="number" [(ngModel)]="setTimeOfReading"  name="num" min="1" max="30" style="width: 100px;" class="form-control" aria-describedby="basic-addon1"></div>
+                </div>
+                
+                <div class="row pt-2">
+                    <div class="col d-flex justify-content-center"><button (click)="handleSetTimeReading()" type="button" class="btn btn-outline-dark">Change time</button></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-4">
+            <div class="col d-flex align-items-center justify-content-center">
+                <h2 style="cursor: context-menu;">Current time of reading</h2>
+            </div>
+            <hr>
+            <div class="col d-flex justify-content-center align-items-center pt-1">
+                <div class="row justify-content-center">
+                    <h1>{{currentTimeOfReading}}</h1>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <!--(change)="handleGetLevelFromInput($event.target.value)"-->
+    <!--TABLE-->
+    <div class="row justify-content-between pt-5">
+        <div class="col-3">
+            <p style="font-weight: 500; font-size: 22px;">Get data by:</p>
+            <select  (change)="handleGetDataBy($event.target.value)"  class="custom-select form-select" id="inputGroupSelect01">
+                <option selected value="">Select type of data...</option>
+                <option value="1">Electricity Usage</option>
+                <option value="2">Generated Electricity</option>
+                <option value="3">Temperature</option>
+                <option value="4">Get All Data</option>
+            </select>
+        </div>
+        <div  class="col-3">
+            <p  style="font-weight: 500; font-size: 22px;">Order by:</p>
+            <select [disabled]="disableSelect" (change)="handleGetOrderBy($event.target.value)"   class="custom-select form-select" id="inputGroupSelect01">
+                <option selected value="">Select order...</option>
+                <option value="gr">Greather than </option>
+                <option value="sm">Smaller than</option>
+            </select>
+        </div>
+
+        <div class="col-2">
+            <p style="font-weight: 500; font-size: 22px;">Value:</p>
+            <input [disabled]="disableSelect" [(ngModel)]="valueFromInput" type="text" onkeyup="this.value=this.value.replace(/[^\d]/,'')"  style="width: 150px;" plac class="form-control" placeholder="KW, C" aria-describedby="basic-addon1">
+        </div>
+        
+        <div class="col-3 d-flex align-items-center pt-5 " >
+            <button (click)="handleFindData()" type="button" class="btn btn-outline-dark">Find data</button>
+        </div>
+    </div>
+
+    <!--TABLE-->
+    <div class="row p-2 pt-5">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Time</th>
+                    <th scope="col">Use</th>
+                    <th scope="col">Gen</th>
+                    <th scope="col">HouseOverall</th>
+                    <th scope="col">Dishwasher</th>
+                    <th scope="col">Furnace1</th>
+                    <th scope="col">Furnace2</th>
+                    <th scope="col">HomeOffice</th>
+                    <th scope="col">Fridge</th>
+                    <th scope="col">WineCellar</th>
+                    <th scope="col">GarageDoor</th>
+                    <th scope="col">Kitchen1</th>
+                    <th scope="col">Kitchen2</th>
+                    <th scope="col">Kitchen3</th>
+                    <th scope="col">Barn</th>
+                    <th scope="col">Well</th>
+                    <th scope="col">Microwave</th>
+                    <th scope="col">LivingRoom</th>
+                    <th scope="col">Solar</th>
+                    <th scope="col">Temperature</th>
+                    <th scope="col">Icon</th>
+                    <th scope="col">Humidity</th>
+                    <th scope="col">Visibility</th>
+                    <th scope="col">Summary</th>
+                    <th scope="col">ApparentTemperature</th>
+                    <th scope="col">Pressure</th>
+                    <th scope="col">WindSpeed</th>
+                    <th scope="col">CloudCover</th>
+                    <th scope="col">WindBearing</th>
+                    <th scope="col">PrecipIntensity</th>
+                    <th scope="col">PrecipProbability</th>
+                    <th scope="col">DewPoint</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let SmartHomeArrayItem of SmartHomeArray">
+                    <td>{{SmartHomeArrayItem.time}}</td>
+                    <td>{{SmartHomeArrayItem.use}}</td>
+                    <td>{{SmartHomeArrayItem.gen}}</td>
+                    <td>{{SmartHomeArrayItem.houseOverall}}</td>
+                    <td>{{SmartHomeArrayItem.dishwasher}}</td>
+                    <td>{{SmartHomeArrayItem.furnace1}}</td>
+                    <td>{{SmartHomeArrayItem.furnace2}}</td>
+                    <td>{{SmartHomeArrayItem.homeOffice}}</td>
+                    <td>{{SmartHomeArrayItem.fridge}}</td>
+                    <td>{{SmartHomeArrayItem.wineCellar}}</td>
+                    <td>{{SmartHomeArrayItem.garageDoor}}</td>
+                    <td>{{SmartHomeArrayItem.kitchen1}}</td>
+                    <td>{{SmartHomeArrayItem.kitchen2}}</td>
+                    <td>{{SmartHomeArrayItem.kitchen3}}</td>
+                    <td>{{SmartHomeArrayItem.barn}}</td>
+                    <td>{{SmartHomeArrayItem.well}}</td>
+                    <td>{{SmartHomeArrayItem.microwave}}</td>
+                    <td>{{SmartHomeArrayItem.livingRoom}}</td>
+                    <td>{{SmartHomeArrayItem.solar}}</td>
+                    <td>{{SmartHomeArrayItem.temperature}}</td>
+                    <td>{{SmartHomeArrayItem.icon}}</td>
+                    <td>{{SmartHomeArrayItem.humidity}}</td>
+                    <td>{{SmartHomeArrayItem.visibility}}</td>
+                    <td>{{SmartHomeArrayItem.summary}}</td>
+                    <td>{{SmartHomeArrayItem.apparentTemperature}}</td>
+                    <td>{{SmartHomeArrayItem.pressure}}</td>
+                    <td>{{SmartHomeArrayItem.windSpeed}}</td>
+                    <td>{{SmartHomeArrayItem.cloudCover}}</td>
+                    <td>{{SmartHomeArrayItem.windBearing}}</td>
+                    <td>{{SmartHomeArrayItem.precipIntensity}}</td>
+                    <td>{{SmartHomeArrayItem.precipProbability}}</td>
+                    <td>{{SmartHomeArrayItem.dewPoint}}</td>
+                  </tr>
+                </tbody>
+              </table>
+          </div>
+    </div>
+
+    <div class="container d-flex justify-content-center">
+        <ngb-pagination [(page)]="page"  [collectionSize]="itemsCount" (pageChange)="handlePageNumber(page)"  [pageSize]="3"  aria-label="Default pagination">
+       
+        </ngb-pagination>
+    </div>
+
+    
+    <!--MODAL-->
+    <ng-template #content let-c="close" let-d="dismiss" style="width: 800px;">
+        <div class="modal-header" style="width: 800px; background-color: white;">
+          <h3 class="modal-title" id="modal-basic-title">Data from sensor at: {{modalSmartHome.time}}</h3>
+          <button type="button" class="close btn btn-outline-dark" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="width: 800px; background-color: white;">
+          <div class="row">
+              <div class="col modalce" >
+                <p>Time</p>
+                <p>Use</p>
+                <p>Gen</p>
+                <p>HouseOverall</p>
+                <p>Dishwasher</p>
+                <p>Furnace1</p>
+                <p>Furnace2</p>
+                <p>HomeOffice</p>
+                <p>Fridge</p>
+                <p>WineCellar</p>
+                <p>GarageDoor</p>
+                <p>Kitchen1</p>
+                <p>Kitchen2</p>
+                <p>Kitchen3</p>
+                <p>Barn</p>
+                <p>Well</p>
+                <p>Microwave</p>
+                <p>LivingRoom</p>
+                <p>Solar</p>
+                <p>Temperature</p>
+                <p>Icon</p>
+                <p>Humidity</p>
+                <p>Visibility</p>
+                <p>Summary</p>
+                <p>ApparentTemperature</p>
+                <p>Pressure</p>
+                <p>WindSpeed</p>
+                <p>CloudCover</p>
+                <p>WindBearing</p>
+                <p>PrecipIntensity</p>
+                <p>PrecipProbability</p>
+                <p>DewPoint</p>
+              </div>
+              <div class="col modalce">
+                    <p>{{modalSmartHome.time}}</p>
+                    <p>{{modalSmartHome.use}}</p>
+                    <p>{{modalSmartHome.gen}}</p>
+                    <p>{{modalSmartHome.houseOverall}}</p>
+                    <p>{{modalSmartHome.dishwasher}}<p>
+                    <p>{{modalSmartHome.furnace1}}</p>
+                    <p>{{modalSmartHome.furnace2}}</p>
+                    <p>{{modalSmartHome.homeOffice}}</p>
+                    <p>{{modalSmartHome.fridge}}</p>
+                    <p>{{modalSmartHome.wineCellar}}</p>
+                    <p>{{modalSmartHome.garageDoor}}</p>
+                    <p>{{modalSmartHome.kitchen1}}</p>
+                    <p>{{modalSmartHome.kitchen2}}</p>
+                    <p>{{modalSmartHome.kitchen3}}</p>
+                    <p>{{modalSmartHome.barn}}</p>
+                    <p>{{modalSmartHome.well}}</p>
+                    <p>{{modalSmartHome.microwave}}</p>
+                    <p>{{modalSmartHome.livingRoom}}</p>
+                    <p>{{modalSmartHome.solar}}</p>
+                    <p>{{modalSmartHome.temperature}}</p>
+                    <p>{{modalSmartHome.icon}}</p>
+                    <p>{{modalSmartHome.humidity}}</p>
+                    <p>{{modalSmartHome.visibility}}</p>
+                    <p>{{modalSmartHome.summary}}</p>
+                    <p>{{modalSmartHome.apparentTemperature}}</p>
+                    <p>{{modalSmartHome.pressure}}</p>
+                    <p>{{modalSmartHome.windSpeed}}</p>
+                    <p>{{modalSmartHome.cloudCover}}</p>
+                    <p>{{modalSmartHome.windBearing}}</p>
+                    <p>{{modalSmartHome.precipIntensity}}</p>
+                    <p>{{modalSmartHome.precipProbability}}</p>
+                    <p>{{modalSmartHome.dewPoint}}</p>
+              </div>
+          </div>
+        </div>
+    </ng-template>
+      
+   
+
+</div>

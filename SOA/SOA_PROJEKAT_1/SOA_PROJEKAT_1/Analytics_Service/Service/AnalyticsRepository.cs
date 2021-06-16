@@ -15,7 +15,7 @@ namespace Analytics_Service.Service
 
         public AnalyticsRepository(ILogger<AnalyticsRepository> logger)
         {
-            var client = new MongoClient("mongodb://dockercompose4155219515517627736_mongoAnalytics_1:27017");
+            var client = new MongoClient("mongodb://dockercompose3724740770662679534_mongoAnalytics_1:27017");
              var database = client.GetDatabase("SmartHome");
 
             _smartHome = database.GetCollection<SmartHomeTemperature>("SmartHomeTemperature");
