@@ -1,0 +1,306 @@
+{
+	"info": {
+		"_postman_id": "d6fff416-74e1-4c36-a609-43c59821de6e",
+		"name": "SOA_POSTMAN_PROJEKAT_3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "API_Gateway_api/dataGateway",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"time\": \"2021-05-19T19:25:16.683Z\",\r\n  \"use\": 0,\r\n  \"gen\": 0,\r\n  \"houseOverall\": 0,\r\n  \"dishwasher\": 0,\r\n  \"furnace1\": 0,\r\n  \"furnace2\": 0,\r\n  \"homeOffice\": 0,\r\n  \"fridge\": 0,\r\n  \"wineCellar\": 0,\r\n  \"garageDoor\": 0,\r\n  \"kitchen1\": 0,\r\n  \"kitchen2\": 0,\r\n  \"kitchen3\": 0,\r\n  \"barn\": 0,\r\n  \"well\": 0,\r\n  \"microwave\": 0,\r\n  \"livingRoom\": 0,\r\n  \"solar\": 0,\r\n  \"temperature\": 0,\r\n  \"icon\": \"string\",\r\n  \"humidity\": 0,\r\n  \"visibility\": 0,\r\n  \"summary\": \"string\",\r\n  \"apparentTemperature\": 0,\r\n  \"pressure\": 0,\r\n  \"windSpeed\": 0,\r\n  \"cloudCover\": \"string\",\r\n  \"windBearing\": 0,\r\n  \"precipIntensity\": 0,\r\n  \"dewPoint\": 0,\r\n  \"precipProbability\": 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:55381/api/dataGateway",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55381",
+					"path": [
+						"api",
+						"dataGateway"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "API_Gateway_api/dataGateway/usage?use=1&grSmUse=gr",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:55381/api/dataGateway/usage?use=1&grSmUse=gr",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55381",
+					"path": [
+						"api",
+						"dataGateway",
+						"usage"
+					],
+					"query": [
+						{
+							"key": "use",
+							"value": "1"
+						},
+						{
+							"key": "grSmUse",
+							"value": "gr"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "API_Gateway_api/dataGateway/generated?gen=1&grSmUse=gr",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:55381/api/dataGateway/generated?gen=1&grSmGen=sm",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55381",
+					"path": [
+						"api",
+						"dataGateway",
+						"generated"
+					],
+					"query": [
+						{
+							"key": "gen",
+							"value": "1"
+						},
+						{
+							"key": "grSmGen",
+							"value": "sm"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "API_Gateway_api/dataGateway/temperature??temp=1&grSmUse=gr",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:55381/api/dataGateway/temperature?temp=1&grSmTemp=gr",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55381",
+					"path": [
+						"api",
+						"dataGateway",
+						"temperature"
+					],
+					"query": [
+						{
+							"key": "temp",
+							"value": "1"
+						},
+						{
+							"key": "grSmTemp",
+							"value": "gr"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "API_Gateway_api/dataGateway/allData?from=0&to=5",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:55381/api/dataGateway/allData?from=0&to=5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55381",
+					"path": [
+						"api",
+						"dataGateway",
+						"allData"
+					],
+					"query": [
+						{
+							"key": "from",
+							"value": "0"
+						},
+						{
+							"key": "to",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "API_Gateway_api/api/commandGateway/setTimeInterval",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "15",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:55381/api/commandGateway/setTimeInterval",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55381",
+					"path": [
+						"api",
+						"commandGateway",
+						"setTimeInterval"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "API_Gateway_api/api/commandGateway/getTimeInterval",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:55381/api/commandGateway/getTimeInterval",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55381",
+					"path": [
+						"api",
+						"commandGateway",
+						"getTimeInterval"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "API_Gateway_api/api/commandGateway/getLastAction",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:55381/api/commandGateway/getLastAction",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55381",
+					"path": [
+						"api",
+						"commandGateway",
+						"getLastAction"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
