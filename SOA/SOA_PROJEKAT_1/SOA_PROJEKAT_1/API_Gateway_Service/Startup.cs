@@ -29,6 +29,16 @@ namespace API_Gateway_Service
 
             services.AddControllers();
             services.AddSingleton<IGatewayService, GatewayService>();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CORS", builder =>
+                {
+                    builder.AllowAnyHeader()
+                   .AllowAnyMethod()
+                   .SetIsOriginAllowed((host) => true)
+                   .AllowCredentials();
+                });
+            });
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "API_Gateway_Service", Version = "v1" });
@@ -46,6 +56,7 @@ namespace API_Gateway_Service
             }
 
             app.UseRouting();
+            app.UseCors("CORS");
 
             app.UseAuthorization();
 

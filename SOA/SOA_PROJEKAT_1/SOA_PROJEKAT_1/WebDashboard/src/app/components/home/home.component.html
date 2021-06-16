@@ -59,11 +59,11 @@
             <div class="col pt-1">
                 <div class="row justify-content-center">
                     <div class="col-6 d-flex justify-content-center"><p style="font-weight: 600; font-size: 22px;">Time in seconds:</p></div>
-                    <div class="col-4"><input type="number" name="num" min="1" max="30" style="width: 100px;" class="form-control" aria-describedby="basic-addon1"></div>
+                    <div class="col-4"><input type="number" [(ngModel)]="setTimeOfReading"  name="num" min="1" max="30" style="width: 100px;" class="form-control" aria-describedby="basic-addon1"></div>
                 </div>
                 
                 <div class="row pt-2">
-                    <div class="col d-flex justify-content-center"><button type="button" class="btn btn-outline-dark">Change time</button></div>
+                    <div class="col d-flex justify-content-center"><button (click)="handleSetTimeReading()" type="button" class="btn btn-outline-dark">Change time</button></div>
                 </div>
             </div>
         </div>
@@ -75,7 +75,7 @@
             <hr>
             <div class="col d-flex justify-content-center align-items-center pt-1">
                 <div class="row justify-content-center">
-                    <h1>4s</h1>
+                    <h1>{{currentTimeOfReading}}</h1>
                 </div>
             </div>
         </div>
@@ -97,20 +97,20 @@
         </div>
         <div  class="col-3">
             <p  style="font-weight: 500; font-size: 22px;">Order by:</p>
-            <select [disabled]="disableSelect"  class="custom-select form-select" id="inputGroupSelect01">
+            <select [disabled]="disableSelect" (change)="handleGetOrderBy($event.target.value)"   class="custom-select form-select" id="inputGroupSelect01">
                 <option selected value="">Select order...</option>
-                <option value="Advanced">Greather than </option>
-                <option value="Advanced">Smaller than</option>
+                <option value="gr">Greather than </option>
+                <option value="sm">Smaller than</option>
             </select>
         </div>
 
         <div class="col-2">
             <p style="font-weight: 500; font-size: 22px;">Value:</p>
-            <input [disabled]="disableSelect" type="text" onkeyup="this.value=this.value.replace(/[^\d]/,'')"  style="width: 150px;" plac class="form-control" placeholder="KW, C" aria-describedby="basic-addon1">
+            <input [disabled]="disableSelect" [(ngModel)]="valueFromInput" type="text" onkeyup="this.value=this.value.replace(/[^\d]/,'')"  style="width: 150px;" plac class="form-control" placeholder="KW, C" aria-describedby="basic-addon1">
         </div>
         
         <div class="col-3 d-flex align-items-center pt-5 " >
-            <button type="button" class="btn btn-outline-dark">Find data</button>
+            <button (click)="handleFindData()" type="button" class="btn btn-outline-dark">Find data</button>
         </div>
     </div>
 
@@ -120,29 +120,74 @@
             <table class="table">
                 <thead>
                   <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Use</th>
+                    <th scope="col">Gen</th>
+                    <th scope="col">HouseOverall</th>
+                    <th scope="col">Dishwasher</th>
+                    <th scope="col">Furnace1</th>
+                    <th scope="col">Furnace2</th>
+                    <th scope="col">HomeOffice</th>
+                    <th scope="col">Fridge</th>
+                    <th scope="col">WineCellar</th>
+                    <th scope="col">GarageDoor</th>
+                    <th scope="col">Kitchen1</th>
+                    <th scope="col">Kitchen2</th>
+                    <th scope="col">Kitchen3</th>
+                    <th scope="col">Barn</th>
+                    <th scope="col">Well</th>
+                    <th scope="col">Microwave</th>
+                    <th scope="col">LivingRoom</th>
+                    <th scope="col">Solar</th>
+                    <th scope="col">Temperature</th>
+                    <th scope="col">Icon</th>
+                    <th scope="col">Humidity</th>
+                    <th scope="col">Visibility</th>
+                    <th scope="col">Summary</th>
+                    <th scope="col">ApparentTemperature</th>
+                    <th scope="col">Pressure</th>
+                    <th scope="col">WindSpeed</th>
+                    <th scope="col">CloudCover</th>
+                    <th scope="col">WindBearing</th>
+                    <th scope="col">PrecipIntensity</th>
+                    <th scope="col">PrecipProbability</th>
+                    <th scope="col">DewPoint</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td colspan="2">Larry the Bird</td>
-                    <td>@twitter</td>
+                  <tr *ngFor="let SmartHomeArrayItem of SmartHomeArray">
+                    <td>{{SmartHomeArrayItem.time}}</td>
+                    <td>{{SmartHomeArrayItem.use}}</td>
+                    <td>{{SmartHomeArrayItem.gen}}</td>
+                    <td>{{SmartHomeArrayItem.houseOverall}}</td>
+                    <td>{{SmartHomeArrayItem.dishwasher}}</td>
+                    <td>{{SmartHomeArrayItem.furnace1}}</td>
+                    <td>{{SmartHomeArrayItem.furnace2}}</td>
+                    <td>{{SmartHomeArrayItem.homeOffice}}</td>
+                    <td>{{SmartHomeArrayItem.fridge}}</td>
+                    <td>{{SmartHomeArrayItem.wineCellar}}</td>
+                    <td>{{SmartHomeArrayItem.garageDoor}}</td>
+                    <td>{{SmartHomeArrayItem.kitchen1}}</td>
+                    <td>{{SmartHomeArrayItem.kitchen2}}</td>
+                    <td>{{SmartHomeArrayItem.kitchen3}}</td>
+                    <td>{{SmartHomeArrayItem.barn}}</td>
+                    <td>{{SmartHomeArrayItem.well}}</td>
+                    <td>{{SmartHomeArrayItem.microwave}}</td>
+                    <td>{{SmartHomeArrayItem.livingRoom}}</td>
+                    <td>{{SmartHomeArrayItem.solar}}</td>
+                    <td>{{SmartHomeArrayItem.temperature}}</td>
+                    <td>{{SmartHomeArrayItem.icon}}</td>
+                    <td>{{SmartHomeArrayItem.humidity}}</td>
+                    <td>{{SmartHomeArrayItem.visibility}}</td>
+                    <td>{{SmartHomeArrayItem.summary}}</td>
+                    <td>{{SmartHomeArrayItem.apparentTemperature}}</td>
+                    <td>{{SmartHomeArrayItem.pressure}}</td>
+                    <td>{{SmartHomeArrayItem.windSpeed}}</td>
+                    <td>{{SmartHomeArrayItem.cloudCover}}</td>
+                    <td>{{SmartHomeArrayItem.windBearing}}</td>
+                    <td>{{SmartHomeArrayItem.precipIntensity}}</td>
+                    <td>{{SmartHomeArrayItem.precipProbability}}</td>
+                    <td>{{SmartHomeArrayItem.dewPoint}}</td>
                   </tr>
                 </tbody>
               </table>
@@ -150,7 +195,7 @@
     </div>
 
     <div class="container d-flex justify-content-center">
-        <ngb-pagination [(page)]="page" [collectionSize]="itemsCount" (pageChange)="handlePageNumber(page)"  [pageSize]="5"  aria-label="Default pagination">
+        <ngb-pagination [(page)]="page" [collectionSize]="itemsCount" (pageChange)="handlePageNumber(page)"  [pageSize]="3"  aria-label="Default pagination">
        
         </ngb-pagination>
     </div>

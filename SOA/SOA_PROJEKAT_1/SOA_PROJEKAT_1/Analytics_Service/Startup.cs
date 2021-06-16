@@ -28,6 +28,16 @@ namespace Analytics_Service
         {
 
             services.AddControllers();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CORS", builder =>
+                {
+                    builder.AllowAnyHeader()
+                   .AllowAnyMethod()
+                   .SetIsOriginAllowed((host) => true)
+                   .AllowCredentials();
+                });
+            });
             services.AddSingleton<IMessageService, MessageService>();
             services.AddSingleton<IAnalyticsRepository, AnalyticsRepository>();
             services.AddSwaggerGen(c =>
@@ -47,6 +57,8 @@ namespace Analytics_Service
             }
 
             app.UseRouting();
+
+            app.UseCors("CORS");
 
             app.UseAuthorization();
 
