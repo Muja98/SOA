@@ -1,3 +1,4 @@
+using API_Gateway_Service.HubConfig;
 using API_Gateway_Service.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -43,6 +44,10 @@ namespace API_Gateway_Service
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "API_Gateway_Service", Version = "v1" });
             });
+            services.AddSignalR(options =>
+            {
+                options.EnableDetailedErrors = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -63,6 +68,12 @@ namespace API_Gateway_Service
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+                endpoints.MapHub<NotificationHub>("notificationUser");
             });
         }
     }

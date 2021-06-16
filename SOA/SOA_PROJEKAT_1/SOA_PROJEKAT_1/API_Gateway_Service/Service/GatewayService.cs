@@ -7,11 +7,19 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.SignalR;
+using API_Gateway_Service.HubConfig;
 
 namespace API_Gateway_Service.Service
 {
     public class GatewayService : IGatewayService
     {
+        private readonly IHubContext<NotificationHub> _hub;
+
+        public GatewayService(IHubContext<NotificationHub> hub)
+        {
+            _hub = hub;
+        }
         public async Task<string> AddDataFromSensors(SmartHome smartHome)
         {
             using (var httpClient = new HttpClient())
@@ -96,6 +104,7 @@ namespace API_Gateway_Service.Service
                 using (var response = await httpClient.PostAsync("http://Command_Service:80/api/command/setTimeInterval", content))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
+                    _ = _hub.Clients.Group("notificationGroup").SendAsync("ReceiveNotification", "Interval is seted by user to: " + interval);
                     return apiResponse;
                 }
 

@@ -5,19 +5,14 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.SignalR;
-using Command_Service.HubConfig;
 
 namespace Command_Service.Service
 {
     public class CommandService : ICommandService
     {
-        private readonly IHubContext<NotificationHub> _hub;
+      
 
-        public CommandService(IHubContext<NotificationHub> hub)
-        {
-            _hub = hub;
-        }
+   
         public async Task<string> setTimeInterval(int interval)
         {
             using (var httpClient = new HttpClient())
@@ -27,7 +22,6 @@ namespace Command_Service.Service
                 using (var response = await httpClient.PutAsync("http://Sensor_Device_Service:80/api/smartHome/interval", content))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    _ = _hub.Clients.Group("notificationGroup").SendAsync("ReceiveNotification", "Interval is seted to: "+interval);
                     return apiResponse;
                 }
 
