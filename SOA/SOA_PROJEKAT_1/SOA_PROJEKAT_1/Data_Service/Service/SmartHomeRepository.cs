@@ -6,6 +6,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Data_Service.DatabaseSettings;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.SignalR;
+using Data_Service.HubConfig;
 
 namespace Data_Service.Service
 {
@@ -13,18 +15,21 @@ namespace Data_Service.Service
     {
         private readonly IMongoCollection<SmartHome> _smartHome;
         public readonly ILogger<ISmartHomeRepository> _logger;
-
-        public SmartHomeRepository(ISmartHomeMongoDatabaseSettings settings, ILogger<SmartHomeRepository> logger)
+        private readonly IHubContext<DataFromSensorHub> _hub;
+        public SmartHomeRepository(ISmartHomeMongoDatabaseSettings settings, ILogger<SmartHomeRepository> logger, IHubContext<DataFromSensorHub> hub)
         {
             var client = new MongoClient("mongodb://dockercompose3724740770662679534_mongo_1:27017");
             var database = client.GetDatabase("SmartHome");
 
             _smartHome = database.GetCollection<SmartHome>("Sensors");
             this._logger = logger;
+            _hub = hub;
         }
         public async Task AddDataFromSensors(SmartHome smartHome)
         {
             await _smartHome.InsertOneAsync(smartHome);
+            string groupName = "dataFromSensor";
+            _ = _hub.Clients.Group(groupName).SendAsync("ReceiveMessage", smartHome);
         }
 
         public async Task<IEnumerable<SmartHome>> GetByUse(float use, string grSmUse)

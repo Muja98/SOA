@@ -9,12 +9,14 @@ import { CardsComponent } from './components/cards/cards.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
+import { ToastsContainer } from './components/toast-container/toast-container.component';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     CardsComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ToastsContainer
   ],
   imports: [
     BrowserModule,

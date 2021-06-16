@@ -1,8 +1,9 @@
+import { signalRService } from './../../Service/signalR.service';
 import { SmartHome } from './../../Model/smartHome';
 import { Component, OnInit } from '@angular/core';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { IoTService } from 'src/app/Service/iot.service';
-
+import * as signalR from '@aspnet/signalr';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +15,11 @@ export class HomeComponent implements OnInit {
   constructor(config: NgbModalConfig, private modalService: NgbModal, private IoTService: IoTService) {
     config.backdrop = 'static';
     config.keyboard = false;
+
    }
+  
+  public _hubConnection: signalR.HubConnection;
+
 
   public disableSelect:boolean = false;
   public currentTimeOfReading:number = 0; 
@@ -26,14 +31,21 @@ export class HomeComponent implements OnInit {
   
   public SmartHomeArray:Array<SmartHome> = [];
   public tempSmartHomeArray:Array<SmartHome> = [];
+  public logsSmartHomeArray:Array<SmartHome> = [];
+  public templogsSmartHomeArray:Array<SmartHome> = [];
+
+  public modalSmartHome:SmartHome = new SmartHome();
+
 
   itemsPerPage:number = 3;
   itemsCount:number = 15;
   page:number = 1;
   from = 0;
   to = this.itemsPerPage;
-  todoHabbit = [];
- 
+
+  ngOnDestroy(): void {
+    this._hubConnection.stop().then(() => console.log("Connection stopped."))
+  }
 
   ngOnInit(): void {  
     this.IoTService.getTimeInterval().subscribe((timeOfReadong:any) =>{
@@ -42,7 +54,39 @@ export class HomeComponent implements OnInit {
     this.IoTService.getAllData(0,3).subscribe((sensorDataArray:Array<SmartHome>)=>{
       this.SmartHomeArray = sensorDataArray;
     })
+
+    this._hubConnection = new signalR.HubConnectionBuilder()
+    .withUrl("http://localhost:1112/sensorData")
+    .build()
+
+    this._hubConnection
+    .start()
+    .then(() => {
+      console.log('Connection started! :)')
+      this.joinRoomDataSensor();
+    }
+        
+    )
+    .catch(err => console.log('Error while establishing connection :('));
+    this._hubConnection.on('ReceiveMessage', (newSensorData:SmartHome) => {
+      this.logsSmartHomeArray.push(newSensorData);
+      this.templogsSmartHomeArray = [];
+      this.templogsSmartHomeArray = this.logsSmartHomeArray;
+      this.templogsSmartHomeArray.reverse();
+    });
+
+ 
+    
   }
+
+  joinRoomDataSensor()
+  {
+    this._hubConnection.invoke("JoinRoom", "dataFromSensor").catch((err)=>{
+      console.log(err)
+    })
+  }
+
+ 
 
   handleGetDataBy(valueFromDataSelect: string):void
   {
@@ -52,6 +96,45 @@ export class HomeComponent implements OnInit {
       this.disableSelect = false;
 
     this.valueFromDataSelect = valueFromDataSelect;
+  }
+
+  handleShowSensorDataInModal(clickedSmartHomeObject:SmartHome,content:any)
+  {
+   
+    this.modalSmartHome.time = clickedSmartHomeObject.time;
+    this.modalSmartHome.use = clickedSmartHomeObject.use;
+    this.modalSmartHome.gen = clickedSmartHomeObject.gen;
+    this.modalSmartHome.houseOverall = clickedSmartHomeObject.houseOverall;
+    this.modalSmartHome.dishwasher = clickedSmartHomeObject.dishwasher;
+    this.modalSmartHome.furnace1 = clickedSmartHomeObject.furnace1;
+    this.modalSmartHome.furnace2 = clickedSmartHomeObject.furnace2;
+    this.modalSmartHome.homeOffice = clickedSmartHomeObject.homeOffice;
+    this.modalSmartHome.fridge = clickedSmartHomeObject.fridge;
+    this.modalSmartHome.wineCellar = clickedSmartHomeObject.wineCellar;
+    this.modalSmartHome.garageDoor = clickedSmartHomeObject.garageDoor;
+    this.modalSmartHome.kitchen1 = clickedSmartHomeObject.kitchen1;
+    this.modalSmartHome.kitchen2 = clickedSmartHomeObject.kitchen2;
+    this.modalSmartHome.kitchen3 = clickedSmartHomeObject.kitchen3;
+    this.modalSmartHome.barn = clickedSmartHomeObject.barn;
+    this.modalSmartHome.well = clickedSmartHomeObject.well;
+    this.modalSmartHome.microwave = clickedSmartHomeObject.microwave;
+    this.modalSmartHome.livingRoom = clickedSmartHomeObject.livingRoom;
+    this.modalSmartHome.solar = clickedSmartHomeObject.solar;
+    this.modalSmartHome.temperature = clickedSmartHomeObject.temperature;
+    this.modalSmartHome.icon = clickedSmartHomeObject.icon;
+    this.modalSmartHome.humidity = clickedSmartHomeObject.humidity;
+    this.modalSmartHome.visibility = clickedSmartHomeObject.visibility;
+    this.modalSmartHome.summary = clickedSmartHomeObject.summary;
+    this.modalSmartHome.apparentTemperature = clickedSmartHomeObject.apparentTemperature;
+    this.modalSmartHome.pressure = clickedSmartHomeObject.pressure;
+    this.modalSmartHome.windSpeed = clickedSmartHomeObject.windSpeed;
+    this.modalSmartHome.cloudCover = clickedSmartHomeObject.cloudCover;
+    this.modalSmartHome.windBearing = clickedSmartHomeObject.windBearing;
+    this.modalSmartHome.precipIntensity = clickedSmartHomeObject.precipIntensity;
+    this.modalSmartHome.dewPoint = clickedSmartHomeObject.dewPoint;
+    this.modalSmartHome.precipProbability = clickedSmartHomeObject.precipProbability;
+
+    this.open(content);
   }
 
   handleGetOrderBy(valueFromOrderBy:string):void

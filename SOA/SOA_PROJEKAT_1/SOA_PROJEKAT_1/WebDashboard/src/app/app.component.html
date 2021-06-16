@@ -13,12 +13,9 @@
           <p style="cursor: pointer; font-weight: 500; font-size: 20px;">Newest</p>
           <hr>
           <div class="row scrollNotification" >
-            <p>12:45 Timer is set to 1</p>
-            <p>12:46 Timer is set to 3</p>
-            <p>13:00 Only Electricity</p>
-            <p>13:45 All data</p>
-            <p>13:45 All data</p>
-            <p>13:45 All data</p>
+            <div *ngFor="let tempnotificationArrayitem of tempnotificationArray">
+              <p>{{tempnotificationArrayitem}}</p>
+            </div>
           </div>
         </div>
      </div>
@@ -45,4 +42,5 @@
    </div>
   </div>
 
+  <app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
  </div>

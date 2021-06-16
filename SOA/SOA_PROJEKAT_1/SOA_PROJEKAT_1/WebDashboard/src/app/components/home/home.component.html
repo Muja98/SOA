@@ -12,42 +12,11 @@
                     <div class="col-4 d-flex justify-content-center"><p>Time</p></div>
                     <div class="col-8 d-flex justify-content-center"><p>Payload</p></div>
                 </div>
-                <div class="row">
-                    <div class="col-4 d-flex justify-content-center"><p>12:45</p></div>
-                    <div style="cursor: pointer;" (click)="open(content)" class="col-8 d-flex justify-content-center"><p>time:123, number:"sadwd"</p></div>
+                <div class="row" *ngFor="let smartHomeLogItem of templogsSmartHomeArray">
+                    <div class="col-4 d-flex justify-content-center " style="padding-left: 50px;"><p>{{smartHomeLogItem.time}}</p></div>
+                    <div style="cursor: pointer;" (click)="handleShowSensorDataInModal(smartHomeLogItem,content)" class="col-8 d-flex justify-content-center"><p class="cut-text">[{{smartHomeLogItem.use + smartHomeLogItem.gen + smartHomeLogItem.houseOverall}}...  </p></div>
                 </div>
-                <div class="row">
-                    <div class="col-4 d-flex justify-content-center"><p>12:45</p></div>
-                    <div style="cursor: pointer;" (click)="open(content)" class="col-8 d-flex justify-content-center"><p>time:123, number:"sadwd"</p></div>
-                </div>
-                <div class="row">
-                    <div class="col-4 d-flex justify-content-center"><p>12:45</p></div>
-                    <div style="cursor: pointer;" (click)="open(content)" class="col-8 d-flex justify-content-center"><p>time:123, number:"sadwd"</p></div>
-                </div>
-                <div class="row">
-                    <div class="col-4 d-flex justify-content-center"><p>12:45</p></div>
-                    <div style="cursor: pointer;" (click)="open(content)" class="col-8 d-flex justify-content-center"><p>time:123, number:"sadwd"</p></div>
-                </div>
-                <div class="row">
-                    <div class="col-4 d-flex justify-content-center"><p>12:45</p></div>
-                    <div style="cursor: pointer;" (click)="open(content)" class="col-8 d-flex justify-content-center"><p>time:123, number:"sadwd"</p></div>
-                </div>
-                <div class="row">
-                    <div class="col-4 d-flex justify-content-center"><p>12:45</p></div>
-                    <div style="cursor: pointer;" (click)="open(content)" class="col-8 d-flex justify-content-center"><p>time:123, number:"sadwd"</p></div>
-                </div>
-                <div class="row">
-                    <div class="col-4 d-flex justify-content-center"><p>12:45</p></div>
-                    <div style="cursor: pointer;" (click)="open(content)" class="col-8 d-flex justify-content-center"><p>time:123, number:"sadwd"</p></div>
-                </div>
-                <div class="row">
-                    <div class="col-4 d-flex justify-content-center"><p>12:45</p></div>
-                    <div style="cursor: pointer;" (click)="open(content)" class="col-8 d-flex justify-content-center"><p>time:123, number:"sadwd"</p></div>
-                </div>
-                <div class="row">
-                    <div class="col-4 d-flex justify-content-center"><p>12:45</p></div>
-                    <div style="cursor: pointer;" (click)="open(content)" class="col-8 d-flex justify-content-center"><p>time:123, number:"sadwd"</p></div>
-                </div>
+             
             </div>
         </div>
 
@@ -202,15 +171,84 @@
 
     
     <!--MODAL-->
-    <ng-template #content let-c="close" let-d="dismiss">
-        <div class="modal-header">
-          <h3 class="modal-title" id="modal-basic-title">Data from sensor at: 12:45</h3>
+    <ng-template #content let-c="close" let-d="dismiss" style="width: 800px;">
+        <div class="modal-header" style="width: 800px; background-color: white;">
+          <h3 class="modal-title" id="modal-basic-title">Data from sensor at: {{modalSmartHome.time}}</h3>
           <button type="button" class="close btn btn-outline-dark" aria-label="Close" (click)="d('Cross click')">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
-          <p>Hello, World!</p>
+        <div class="modal-body" style="width: 800px; background-color: white;">
+          <div class="row">
+              <div class="col modalce" >
+                <p>Time</p>
+                <p>Use</p>
+                <p>Gen</p>
+                <p>HouseOverall</p>
+                <p>Dishwasher</p>
+                <p>Furnace1</p>
+                <p>Furnace2</p>
+                <p>HomeOffice</p>
+                <p>Fridge</p>
+                <p>WineCellar</p>
+                <p>GarageDoor</p>
+                <p>Kitchen1</p>
+                <p>Kitchen2</p>
+                <p>Kitchen3</p>
+                <p>Barn</p>
+                <p>Well</p>
+                <p>Microwave</p>
+                <p>LivingRoom</p>
+                <p>Solar</p>
+                <p>Temperature</p>
+                <p>Icon</p>
+                <p>Humidity</p>
+                <p>Visibility</p>
+                <p>Summary</p>
+                <p>ApparentTemperature</p>
+                <p>Pressure</p>
+                <p>WindSpeed</p>
+                <p>CloudCover</p>
+                <p>WindBearing</p>
+                <p>PrecipIntensity</p>
+                <p>PrecipProbability</p>
+                <p>DewPoint</p>
+              </div>
+              <div class="col modalce">
+                    <p>{{modalSmartHome.time}}</p>
+                    <p>{{modalSmartHome.use}}</p>
+                    <p>{{modalSmartHome.gen}}</p>
+                    <p>{{modalSmartHome.houseOverall}}</p>
+                    <p>{{modalSmartHome.dishwasher}}<p>
+                    <p>{{modalSmartHome.furnace1}}</p>
+                    <p>{{modalSmartHome.furnace2}}</p>
+                    <p>{{modalSmartHome.homeOffice}}</p>
+                    <p>{{modalSmartHome.fridge}}</p>
+                    <p>{{modalSmartHome.wineCellar}}</p>
+                    <p>{{modalSmartHome.garageDoor}}</p>
+                    <p>{{modalSmartHome.kitchen1}}</p>
+                    <p>{{modalSmartHome.kitchen2}}</p>
+                    <p>{{modalSmartHome.kitchen3}}</p>
+                    <p>{{modalSmartHome.barn}}</p>
+                    <p>{{modalSmartHome.well}}</p>
+                    <p>{{modalSmartHome.microwave}}</p>
+                    <p>{{modalSmartHome.livingRoom}}</p>
+                    <p>{{modalSmartHome.solar}}</p>
+                    <p>{{modalSmartHome.temperature}}</p>
+                    <p>{{modalSmartHome.icon}}</p>
+                    <p>{{modalSmartHome.humidity}}</p>
+                    <p>{{modalSmartHome.visibility}}</p>
+                    <p>{{modalSmartHome.summary}}</p>
+                    <p>{{modalSmartHome.apparentTemperature}}</p>
+                    <p>{{modalSmartHome.pressure}}</p>
+                    <p>{{modalSmartHome.windSpeed}}</p>
+                    <p>{{modalSmartHome.cloudCover}}</p>
+                    <p>{{modalSmartHome.windBearing}}</p>
+                    <p>{{modalSmartHome.precipIntensity}}</p>
+                    <p>{{modalSmartHome.precipProbability}}</p>
+                    <p>{{modalSmartHome.dewPoint}}</p>
+              </div>
+          </div>
         </div>
     </ng-template>
       

@@ -15,7 +15,7 @@ export class SmartHome
     kitchen1:number=0;
     kitchen2:number=0;
     kitchen3:number=0;
-    narn:number=0; 
+    barn:number=0; 
     well:number=0; 
     microwave:number=0; 
     livingRoom:number=0;

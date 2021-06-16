@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Command_Service.HubConfig;
 
 namespace Command_Service
 {
@@ -43,6 +44,10 @@ namespace Command_Service
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Command_Service", Version = "v1" });
             });
+            services.AddSignalR(options =>
+            {
+                options.EnableDetailedErrors = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -64,6 +69,7 @@ namespace Command_Service
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<NotificationHub>("notification");
             });
         }
     }

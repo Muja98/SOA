@@ -1,5 +1,17 @@
 .scrollLogs {
   overflow: auto;
   overflow-x: hidden;
+  height: 240px;
   max-height: 240px;
+}
+
+.cut-text {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.modalce {
+  font-weight: 600;
+  font-size: 16px;
 }
