@@ -5,7 +5,7 @@ import { SmartHome } from './../../Model/smartHome';
 import { RealtimeChartOptions } from 'ngx-graph';
 import * as signalR from '@aspnet/signalr';
 import { subSeconds } from 'date-fns';
-
+import {URL_DATA_SERVICE} from "../../API/api";
 
 @Component({
   selector: 'app-cards',
@@ -103,7 +103,7 @@ export class CardsComponent implements OnInit {
    
 
     this._hubConnection = new signalR.HubConnectionBuilder()
-    .withUrl("http://localhost:55542/sensorData")//DataService
+    .withUrl(URL_DATA_SERVICE+"/sensorData")
     .build()
   
     this._hubConnection
