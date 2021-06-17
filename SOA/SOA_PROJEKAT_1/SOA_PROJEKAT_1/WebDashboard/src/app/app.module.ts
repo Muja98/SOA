@@ -10,6 +10,10 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { ToastsContainer } from './components/toast-container/toast-container.component';
+import { LineChartModule, RealtimeChartModule, PieChartModule } from 'ngx-graph';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,6 +25,7 @@ import { ToastsContainer } from './components/toast-container/toast-container.co
   imports: [
     BrowserModule,
     FormsModule,
+    LineChartModule, RealtimeChartModule, PieChartModule,
     HttpClientModule,
     RouterModule.forRoot([
       {path: '', component: HomeComponent},
