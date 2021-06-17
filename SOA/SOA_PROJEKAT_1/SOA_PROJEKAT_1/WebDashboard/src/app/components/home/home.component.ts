@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { IoTService } from 'src/app/Service/iot.service';
 import * as signalR from '@aspnet/signalr';
+import {URL_DATA_SERVICE} from "../../API/api";
 
 @Component({
   selector: 'app-home',
@@ -55,7 +56,7 @@ export class HomeComponent implements OnInit {
     })
 
     this._hubConnection = new signalR.HubConnectionBuilder()
-    .withUrl("http://localhost:1112/sensorData")
+    .withUrl(URL_DATA_SERVICE+"/sensorData")
     .build()
 
     this._hubConnection

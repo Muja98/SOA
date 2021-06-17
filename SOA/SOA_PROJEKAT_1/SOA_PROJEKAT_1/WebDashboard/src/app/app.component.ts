@@ -1,7 +1,7 @@
 import { ToastService } from './Service/toast-service';
 import { Component, OnInit } from '@angular/core';
 import * as signalR from '@aspnet/signalr';
-
+import {URL_API_GATEWAY_SERVICE,URL_COMMAND_SERVICE} from "./API/api";
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit():void{
     this._hubConnectionNotification = new signalR.HubConnectionBuilder()
-    .withUrl("http://localhost:1113/notification")
+    .withUrl(URL_COMMAND_SERVICE+"/notification")
     .build()
 
     this._hubConnectionNotification
@@ -48,7 +48,7 @@ export class AppComponent implements OnInit {
     });
 
     this._hubConnectionNotificationUser = new signalR.HubConnectionBuilder()
-    .withUrl("http://localhost:1101/notificationUser")
+    .withUrl(URL_API_GATEWAY_SERVICE+"/notificationUser")
     .build()
 
     this._hubConnectionNotificationUser
