@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit():void{
     this._hubConnectionNotification = new signalR.HubConnectionBuilder()
-    .withUrl("http://localhost:1113/notification")
+    .withUrl("http://localhost:55545/notification")//Command
     .build()
 
     this._hubConnectionNotification
@@ -48,7 +48,7 @@ export class AppComponent implements OnInit {
     });
 
     this._hubConnectionNotificationUser = new signalR.HubConnectionBuilder()
-    .withUrl("http://localhost:1101/notificationUser")
+    .withUrl("http://localhost:55540/notificationUser")//Gateway
     .build()
 
     this._hubConnectionNotificationUser

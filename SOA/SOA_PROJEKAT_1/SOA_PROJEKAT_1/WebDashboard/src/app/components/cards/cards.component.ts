@@ -103,7 +103,7 @@ export class CardsComponent implements OnInit {
    
 
     this._hubConnection = new signalR.HubConnectionBuilder()
-    .withUrl("http://localhost:15555/sensorData")
+    .withUrl("http://localhost:55542/sensorData")//DataService
     .build()
   
     this._hubConnection

@@ -58,7 +58,7 @@ namespace Analytics_Service.Service
                     sht.temperature = temp;
                     await _repository.AddDataFromSensors(sht);
 
-                    //await sendDataToSinddhiApp(message);
+                    await sendDataToSinddhiApp(message);
                 };
                 channel.BasicConsume(queue: "hello",
                                         autoAck: true,
