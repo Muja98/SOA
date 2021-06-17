@@ -9,17 +9,24 @@ services:
     depends_on:
       - mongo
     restart: always
+    ports:
+     - 5000:80
+
   sensor_device_service:
     image: ${DOCKER_REGISTRY-}sensordeviceservice
     build:
       context: .
       dockerfile: Sensor_Device_Service/Dockerfile
     restart: always
+    ports:
+     - 5001:80
+
   mongo:
     image: mongo
     restart: always
     ports:
       - 27117:27017
+
   mongoAnalytics:
     image: mongo
     restart: always
@@ -38,6 +45,7 @@ services:
     - "25672:25672"
     - "15671:15671"
     - "15672:15672"
+
   analytics_service:
     image: ${DOCKER_REGISTRY-}analyticsservice
     build:
@@ -46,6 +54,8 @@ services:
     depends_on: 
     - rabbitmq
     - mongoAnalytics
+    ports:
+     - 5002:80
 
   command_service:
     image: ${DOCKER_REGISTRY-}commandservice
@@ -54,6 +64,8 @@ services:
       dockerfile: Command_Service/Dockerfile
     depends_on: 
     - rabbitmq
+    ports:
+     - 5003:80
 
 
 
@@ -62,4 +74,6 @@ services:
     build:
       context: .
       dockerfile: API_Gateway_Service/Dockerfile
+    ports:
+     - 5004:80
 
