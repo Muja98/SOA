@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Analytics_Service", "Analyt
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Command_Service", "Command_Service\Command_Service.csproj", "{789C0D1A-9786-4BAA-91A4-D554FEAFD950}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API_Gateway_Service", "API_Gateway_Service\API_Gateway_Service.csproj", "{C055A69D-9A77-4686-A003-97C15AF2F9A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API_Gateway_Service", "API_Gateway_Service\API_Gateway_Service.csproj", "{C055A69D-9A77-4686-A003-97C15AF2F9A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

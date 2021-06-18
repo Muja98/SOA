@@ -18,8 +18,8 @@ namespace Data_Service.Service
         private readonly IHubContext<DataFromSensorHub> _hub;
         public SmartHomeRepository(ISmartHomeMongoDatabaseSettings settings, ILogger<SmartHomeRepository> logger, IHubContext<DataFromSensorHub> hub)
         {
-            var client = new MongoClient("mongodb://dockercompose4155219515517627736_mongo_1:27017");
-            var database = client.GetDatabase("SmartHome");
+            var client = new MongoClient("mongodb://dockercompose4155219515517627736_mongo_1:27017"); 
+             var database = client.GetDatabase("SmartHome");
 
             _smartHome = database.GetCollection<SmartHome>("Sensors");
             this._logger = logger;

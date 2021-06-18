@@ -45,6 +45,7 @@ services:
     - "25672:25672"
     - "15671:15671"
     - "15672:15672"
+    restart: always
 
   analytics_service:
     image: ${DOCKER_REGISTRY-}analyticsservice
@@ -76,4 +77,5 @@ services:
       dockerfile: API_Gateway_Service/Dockerfile
     ports:
      - 5004:80
+
 
