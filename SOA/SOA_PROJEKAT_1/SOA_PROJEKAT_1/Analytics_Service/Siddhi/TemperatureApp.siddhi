@@ -9,7 +9,7 @@ define stream TemperatureStream (temperature double);
 --@sink(type='log', prefix='LOGGER')
 --define stream OutputStream(temperature double, averageTemperature double);
 
-@sink(type='http', publisher.url='http://192.168.0.104:50487/api/analytics',
+@sink(type='http', publisher.url='http://192.168.0.104:5002/api/analytics',
       method='POST', headers='Content-type:application/json',
       basic.auth.enabled='false',
       @map(type='json'))
