@@ -1,27 +1,28 @@
-<div class="container-fluid ">
 
+<div class="container-fluid ">
   <!--NAVBAR-->
   <div class="row shadow d-flex align-items-center justify-content-between" style="background-color: black; height: 75px;">
     <div class="col-4 ">
-      <img routerLink="/" width="224px" src="assets\logo.png" class="img-fluid" style="cursor: pointer;" alt="img">
+      <img routerLink="/" src="assets\logo.png" class="img-fluid" style="cursor: pointer; width:224px; position:relative; bottom:50px" alt="img">
     </div>
     <div class="col-2">
-      <div ngbDropdown class="d-inline-block">
-        <i class="fa fa-bell fa-1x" id="dropdownBasic1" ngbDropdownToggle aria-hidden="true" style="cursor: pointer; color: white;"></i>
-        <div style="width: 290px;" class="p-3" ngbDropdownMenu aria-labelledby="dropdownBasic1">
-          <p style="cursor: pointer; font-weight: 700; font-size: 24px;">Notifications</p>
-          <p style="cursor: pointer; font-weight: 500; font-size: 20px;">Newest</p>
-          <hr>
-          <div class="row scrollNotification" style="overflow:auto; max-height:200px">
-            <div *ngFor="let tempnotificationArrayitem of tempnotificationArray">
-              <p>{{tempnotificationArrayitem}}</p>
-            </div>
+
+
+      <img (click)="changeHeightNotification()" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" src="assets\bell.png" class="img-fluid" style="cursor: pointer; width:24px; position:relative; top:30px" alt="img">
+      <div [style.visibility]="notificationHeight" style="width: 290px; background-color:white; position:relative; top:40px; z-index:11111;" class="p-3 border">
+        <p style="cursor: pointer; font-weight: 700; font-size: 24px;">Notifications</p>
+        <p style="cursor: pointer; font-weight: 500; font-size: 20px;">Newest</p>
+        <hr>
+        <div class="row" style="overflow:auto; max-height:200px">
+          <div *ngFor="let tempnotificationArrayitem of tempnotificationArray">
+            <p>{{tempnotificationArrayitem}}</p>
           </div>
         </div>
       </div>
+
+
     </div>
   </div>
-
   <!--SIDEBAR AND CONTAINER-->
   <div class="row" style="height: 1000px;">
     <div class="col-2 shadow" style="background-color: white;">

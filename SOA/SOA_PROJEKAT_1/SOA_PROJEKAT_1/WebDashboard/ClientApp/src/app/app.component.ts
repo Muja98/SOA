@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
   public _hubConnectionNotificationUser: signalR.HubConnection;
   public notificationArray: Array<String> = [];
   public tempnotificationArray: Array<String> = [];
-
+  public notificationHeight: string = "hidden";
   toasts: any[] = [];
 
   constructor(public toastService: ToastService) { }
@@ -21,6 +21,12 @@ export class AppComponent implements OnInit {
     this.toasts.push({ header, body });
   }
 
+  changeHeightNotification() {
+    if (this.notificationHeight === "hidden")
+      this.notificationHeight = "visible";
+    else
+      this.notificationHeight = "hidden";
+  }
   remove(toast) {
     this.toasts = this.toasts.filter(t => t != toast);
   }

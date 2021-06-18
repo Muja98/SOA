@@ -1,7 +1,7 @@
-import { realTimeChartData } from '../../../Model/realTimeChartData';
+import { realTimeChartData } from './../../Model/realTimeChartData';
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { SmartHome } from '../../../Model/smartHome';
+import { SmartHome } from './../../Model/smartHome';
 import { RealtimeChartOptions } from 'ngx-graph';
 import * as signalR from '@aspnet/signalr';
 import { subSeconds } from 'date-fns';
@@ -9,8 +9,7 @@ import { URL_DATA_SERVICE } from "../../API/api";
 
 @Component({
   selector: 'app-cards',
-  templateUrl: './cards.component.html',
-  styleUrls: ['./cards.component.css']
+  templateUrl: './cards.component.html'
 })
 export class CardsComponent implements OnInit {
 
@@ -62,20 +61,7 @@ export class CardsComponent implements OnInit {
 
   realtimeChartData = [[]];
 
-  generateRandomRealtimeData(
-    n: number = 10,
-    step: number = 1,
-    min: number = 0,
-    max: number = 100,
-    date = new Date()
-  ): { date: Date; value: number }[] {
-    return Array.from(Array(n).keys())
-      .map((_, i) => ({
-        date: subSeconds(date, i * step),
-        value: this.randomInt(min, max)
-      }))
-      .reverse();
-  }
+
 
   randomInt(min: number = 0, max: number = 100): number {
     return Math.floor(Math.random() * (max - min + 1) + min);

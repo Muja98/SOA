@@ -1,4 +1,4 @@
-<div class="container d-flex flex-wrap p-3 shadow-lg rounded" style="background-color: white; height: 900px;">
+<div class="container-fluid d-flex flex-wrap p-3 shadow-lg rounded" style="background-color: white; height: 900px; width:1450px;">
 
 
   <div class=" border rounded" style="height: 200px; width: 200px; cursor: pointer;">
@@ -7,8 +7,8 @@
 
   <div *ngFor="let item of cardsArray">
     <div *ngIf="checkIfIsChart(item)" style="height: 200px; width: 400px; margin-left: 10px;">
-      <ngx-realtime-chart [options]="item.realtimeChartOptions"
-                          [data]="item.realtimeChartData">
+      <ngx-realtime-chart [attr.options]="item.realtimeChartOptions"
+                          [attr.data]="item.realtimeChartData">
       </ngx-realtime-chart>
       <h5 style="position: relative; top: 30px;  left: 170px;">{{item.name}}</h5>
     </div>

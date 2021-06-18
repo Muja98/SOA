@@ -29,10 +29,10 @@
     <None Remove="ClientApp\src\app\components\home\home.component.ts" />
     <None Remove="ClientApp\src\app\components\page-not-found\page-not-found.component.ts" />
     <None Remove="ClientApp\src\app\components\toast-container\toast-container.component.ts" />
-    <None Remove="ClientApp\src\app\Service\iot.service.ts" />
+    <None Remove="ClientApp\src\app\Model\realTimeChartData.ts" />
+    <None Remove="ClientApp\src\app\Model\smartHome.ts" />
+    <None Remove="ClientApp\src\app\Service\iot.servive.ts" />
     <None Remove="ClientApp\src\app\Service\toast-service.ts" />
-    <None Remove="ClientApp\src\Model\realTimeChartData.ts" />
-    <None Remove="ClientApp\src\Model\smartHome.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -41,10 +41,10 @@
     <TypeScriptCompile Include="ClientApp\src\app\components\home\home.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\components\page-not-found\page-not-found.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\components\toast-container\toast-container.component.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\Service\iot.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\Model\realTimeChartData.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\Model\smartHome.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\Service\iot.servive.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Service\toast-service.ts" />
-    <TypeScriptCompile Include="ClientApp\src\Model\realTimeChartData.ts" />
-    <TypeScriptCompile Include="ClientApp\src\Model\smartHome.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

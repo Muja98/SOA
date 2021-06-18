@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { URL } from '../API/api';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { SmartHome } from '../../Model/smartHome';
+import { SmartHome } from '../Model/smartHome';
 
 @Injectable({
   providedIn: 'root'

@@ -1,14 +1,13 @@
-import { SmartHome } from '../../../Model/smartHome';
+import { SmartHome } from './../../Model/smartHome';
 import { Component, OnInit } from '@angular/core';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { IoTService } from '../../Service/iot.service';
+import { IoTService } from '../../Service/iot.servive';
 import * as signalR from '@aspnet/signalr';
 import { URL_DATA_SERVICE } from "../../API/api";
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  templateUrl: './home.component.html'
 })
 export class HomeComponent implements OnInit {
 
@@ -148,7 +147,7 @@ export class HomeComponent implements OnInit {
   }
 
   handleFindData() {
-    //if(isNaN(this.valueFromInput) || this.valueFromInput<1)return;
+    if(isNaN(this.valueFromInput) || this.valueFromInput<1)return;
     if (this.valueFromDataSelect === "1") {
       this.IoTService.getUsage(this.valueFromInput, this.valueFromOrderBySelect).subscribe((sensorDataArray: Array<SmartHome>) => {
         this.SmartHomeArray = [];

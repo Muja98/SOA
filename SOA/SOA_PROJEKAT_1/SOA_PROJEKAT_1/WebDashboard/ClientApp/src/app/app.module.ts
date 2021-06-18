@@ -3,36 +3,37 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import { AppComponent } from './app.component';
-import { HomeComponent } from './components/home/home.component';
-import { CardsComponent } from './components/cards/cards.component';
-import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ToastsContainer } from './components/toast-container/toast-container.component';
-import { LineChartModule, RealtimeChartModule, PieChartModule } from 'ngx-graph';
-
-
+import { AppComponent } from './app.component';
+import { NavMenuComponent } from './nav-menu/nav-menu.component';
+import { ToastsContainer } from '../app/components/toast-container/toast-container.component';
+import { HomeComponent } from '../app/components/home/home.component'
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { CardsComponent } from './components/cards/cards.component';
+import { RealtimeChartModule } from 'ngx-graph';
 
 @NgModule({
   declarations: [
     AppComponent,
+    NavMenuComponent,
     HomeComponent,
-    CardsComponent,
     PageNotFoundComponent,
-    ToastsContainer
+    
+    ToastsContainer,
+    CardsComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
-    LineChartModule, RealtimeChartModule, PieChartModule,
+    NgbModule,
+    RealtimeChartModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent },
+      { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'home', component: HomeComponent },
       { path: 'cards', component: CardsComponent },
       { path: '**', component: PageNotFoundComponent }
-    ]),
-    NgbModule
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]

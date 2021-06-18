@@ -1,5 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Provide sufficient contrast against white background */
+
 @import "~bootstrap/dist/css/bootstrap.css";
+a {
+  color: #0366d6;
+}
+
+code {
+  color: #e01a76;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
 
 body {
   background-color: #f4f4f4;
@@ -13,3 +29,41 @@ body {
   .sidebar:hover p:hover {
     font-size: 24px;
   }
+
+
+.scrollLogs {
+  overflow: auto;
+  overflow-x: hidden;
+  height: 240px;
+  max-height: 240px;
+}
+
+.cut-text {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.modalce {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+ngb-pagination ::ng-deep a {
+  color: black !important;
+}
+
+ngb-pagination ::ng-deep .page-item.active .page-link {
+  border-color: black;
+  background-color: black;
+  color: white !important;
+}
+
+  ngb-pagination ::ng-deep .page-item.active .page-link:focus,
+  .page-link:not(:disabled):not(.disabled):active:focus {
+    box-shadow: 0 0 0 0.1rem dimgrey;
+  }
+
+ngb-pagination ::ng-deep .page-link:not(:disabled):not(.disabled):active:focus {
+  box-shadow: 0 0 0 0.1rem dimgrey;
+}
