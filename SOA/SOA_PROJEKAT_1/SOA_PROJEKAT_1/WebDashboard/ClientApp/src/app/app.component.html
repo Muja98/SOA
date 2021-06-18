@@ -1,0 +1,46 @@
+<div class="container-fluid ">
+
+  <!--NAVBAR-->
+  <div class="row shadow d-flex align-items-center justify-content-between" style="background-color: black; height: 75px;">
+    <div class="col-4 ">
+      <img routerLink="/" width="224px" src="assets\logo.png" class="img-fluid" style="cursor: pointer;" alt="img">
+    </div>
+    <div class="col-2">
+      <div ngbDropdown class="d-inline-block">
+        <i class="fa fa-bell fa-1x" id="dropdownBasic1" ngbDropdownToggle aria-hidden="true" style="cursor: pointer; color: white;"></i>
+        <div style="width: 290px;" class="p-3" ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <p style="cursor: pointer; font-weight: 700; font-size: 24px;">Notifications</p>
+          <p style="cursor: pointer; font-weight: 500; font-size: 20px;">Newest</p>
+          <hr>
+          <div class="row scrollNotification" style="overflow:auto; max-height:200px">
+            <div *ngFor="let tempnotificationArrayitem of tempnotificationArray">
+              <p>{{tempnotificationArrayitem}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--SIDEBAR AND CONTAINER-->
+  <div class="row" style="height: 1000px;">
+    <div class="col-2 shadow" style="background-color: white;">
+      <div class="row  pt-4 sidebar" style="padding-left: 22px;"><p routerLink="/home" class="h5" style="font-weight: 700; cursor: pointer;"> Home</p></div>
+      <div class="row  pt-2 sidebar" style="padding-left: 22px;"><p routerLink="/cards" class="h5" style="font-weight: 700; cursor: pointer;">Cards</p></div>
+    </div>
+    <div class="col-10">
+      <div class="row p-5" style="height: 95%;">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+
+  <!--BOTTOM-->
+  <div class="row shadow-lg justify-content-center align-items-center pt-2 pb-2" style="height: auto; background-color: black;">
+    <div class="col col-3">
+      <p style="color: whitesmoke; font-size: 15px; font-weight: 500;">Developed and Deisgned by Sabali Soft {{getCurrentYear()}} </p>
+    </div>
+  </div>
+
+  <app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
+</div>

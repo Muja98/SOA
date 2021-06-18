@@ -1,0 +1,96 @@
+<div class="container d-flex flex-wrap p-3 shadow-lg rounded" style="background-color: white; height: 900px;">
+
+
+  <div class=" border rounded" style="height: 200px; width: 200px; cursor: pointer;">
+    <p (click)="open(content)" style="font-size: 170px; font-weight: 300; position: relative; bottom: 50px; left: 45px;">+</p>
+  </div>
+
+  <div *ngFor="let item of cardsArray">
+    <div *ngIf="checkIfIsChart(item)" style="height: 200px; width: 400px; margin-left: 10px;">
+      <ngx-realtime-chart [options]="item.realtimeChartOptions"
+                          [data]="item.realtimeChartData">
+      </ngx-realtime-chart>
+      <h5 style="position: relative; top: 30px;  left: 170px;">{{item.name}}</h5>
+    </div>
+
+    <div *ngIf="!checkIfIsChart(item)" class=" border rounded" style="height: 200px; width:300px; cursor: pointer;">
+      <p (click)="open(content)" style="font-size: 30px; font-weight: 500; position: relative; left:23px;">{{item.value + item.typeData}}</p>
+      <h3 style="position: relative; left:20px">{{item.name}}</h3>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+  <ng-template #content let-c="close" let-d="dismiss" style="width: 800px;">
+    <div class="modal-header" style="width: 800px; background-color: #ffffff;">
+      <h3 class="modal-title" id="modal-basic-title">Track your data</h3>
+      <button type="button" class="close btn btn-outline-dark" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body" style="width: 800px; background-color: white;">
+      <div class="row p-2">
+
+        <div class="col-6">
+          <h4>Select property to track value:</h4>
+          <select (change)="handleGetData($event.target.value,1)" class="custom-select form-select" id="inputGroupSelect01">
+            <option selected value="">Select property...</option>
+            <option *ngFor="let item of propertyArray; index as i" value={{item}}>{{item}}</option>
+          </select>
+        </div>
+
+      </div>
+
+      <div class="row p-2">
+        <div class="col-6">
+          <h4>Select value type:</h4>
+          <select (change)="handleGetData($event.target.value,2)" class="custom-select form-select" id="inputGroupSelect01">
+            <option selected value="">Select type...</option>
+            <option value="C">C</option>
+            <option value="KW">KW</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row " style="padding-left: 20px;">
+        <div class="col-3 pl-5">
+          <div class="row h4">Min:</div>
+          <div class="row"><input [(ngModel)]="min" type="text" class="form-control"></div>
+        </div>
+      </div>
+      <div class="row " style="padding-left: 20px;">
+        <div class="col-3">
+          <div class="row h4">Max:</div>
+          <div class="row"><input [(ngModel)]="max" type="text" class="form-control"></div>
+        </div>
+      </div>
+
+
+
+      <div class="row p-2">
+        <div class="col-6">
+          <h4>Live data Or Chart:</h4>
+          <select (change)="handleGetData($event.target.value,3)" class="custom-select form-select" id="inputGroupSelect01">
+            <option selected value="">Select...</option>
+            <option value="liveData">Live Data</option>
+            <option value="chart">Chart</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row p-2">
+        <div class="col-4">
+          <button class="btn btn-dark" (click)="d('Cross click')" (click)="handleAddNewCard()">Generate card</button>
+        </div>
+      </div>
+
+    </div>
+  </ng-template>
+
+</div>

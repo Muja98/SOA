@@ -1,0 +1,36 @@
+export class SmartHome {
+  id: string = "";
+  time: string = "";
+  use: number = 0;
+  gen: number = 0;
+  houseOverall: number = 0;
+  dishwasher: number = 0;
+  furnace1: number = 0;
+  furnace2: number = 0;
+  homeOffice: number = 0;
+  fridge: number = 0;
+  wineCellar: number = 0;
+  garageDoor: number = 0;
+  kitchen1: number = 0;
+  kitchen2: number = 0;
+  kitchen3: number = 0;
+  barn: number = 0;
+  well: number = 0;
+  microwave: number = 0;
+  livingRoom: number = 0;
+  solar: number = 0;
+  temperature: number = 0;
+  icon: string = "";
+  humidity: number = 0;
+  visibility: number = 0;
+  summary: string = "";
+  apparentTemperature: number = 0;
+  pressure: number = 0;
+  windSpeed: number = 0;
+  cloudCover: number = 0;
+  windBearing: number = 0;
+  precipIntensity: number = 0;
+  precipProbability: number = 0;
+  dewPoint: number = 0;
+  constructor() { }
+}
