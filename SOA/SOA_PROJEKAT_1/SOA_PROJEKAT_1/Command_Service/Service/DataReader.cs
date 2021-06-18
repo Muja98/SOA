@@ -59,14 +59,14 @@ namespace Command_Service.Service
                     int msg = int.Parse(message);
                     if (msg == 1)
                     {
-                        string result = await _commandService.setTimeInterval(3);
+                        string result = await _commandService.setTimeInterval(22);
                         StaticClasses.CurrentAction.currentAction = result;
-                        _ = _hub.Clients.Group("notificationGroup").SendAsync("ReceiveNotification", "Interval is seted by siddhi to: " + 3);
+                        _ = _hub.Clients.Group("notificationGroup").SendAsync("ReceiveNotification", "Interval is seted by siddhi to: " + 22);
 
                     }
                     else {
-                        string result = await _commandService.setTimeInterval(5);
-                        _ = _hub.Clients.Group("notificationGroup").SendAsync("ReceiveNotification", "Interval is seted by siddhi to: " + 5);
+                        string result = await _commandService.setTimeInterval(24);
+                        _ = _hub.Clients.Group("notificationGroup").SendAsync("ReceiveNotification", "Interval is seted by siddhi to: " + 24);
 
                     }
                 };
