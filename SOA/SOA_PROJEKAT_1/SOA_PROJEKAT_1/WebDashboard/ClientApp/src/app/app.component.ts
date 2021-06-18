@@ -5,7 +5,6 @@ import { URL_API_GATEWAY_SERVICE, URL_COMMAND_SERVICE } from "./API/api";
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
   title = 'WebDashboard';
