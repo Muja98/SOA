@@ -161,7 +161,6 @@ export class HomeComponent implements OnInit {
         this.SmartHomeArray = [];
         this.tempSmartHomeArray = sensorDataArray;
         this.SmartHomeArray = this.tempSmartHomeArray.slice(this.from,this.to);
-        this.itemsCount = this.tempSmartHomeArray.length;
       })
     }
     if(this.valueFromDataSelect === "2")
@@ -170,7 +169,6 @@ export class HomeComponent implements OnInit {
         this.SmartHomeArray = [];
         this.tempSmartHomeArray = sensorDataArray;
         this.SmartHomeArray = this.tempSmartHomeArray.slice(this.from,this.to);
-        this.itemsCount = this.tempSmartHomeArray.length;
       })
     }
     if(this.valueFromDataSelect === "3")
@@ -179,7 +177,6 @@ export class HomeComponent implements OnInit {
         this.SmartHomeArray = [];
         this.tempSmartHomeArray = sensorDataArray;
         this.SmartHomeArray = this.tempSmartHomeArray.slice(this.from,this.to);
-        this.itemsCount = this.tempSmartHomeArray.length;
       })
     }
     if(this.valueFromDataSelect === "4")

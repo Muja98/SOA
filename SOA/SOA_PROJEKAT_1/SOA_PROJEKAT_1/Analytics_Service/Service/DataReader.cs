@@ -82,7 +82,7 @@ namespace Analytics_Service.Service
                 var c = JsonConvert.SerializeObject(temp);
                 Console.WriteLine(c);
                 StringContent content = new StringContent(c, Encoding.UTF8, "application/json");
-                using (var response = await httpClient.PostAsync("http://192.168.0.104:8006/temperature", content))//localhost:9604
+                using (var response = await httpClient.PostAsync("http://192.168.0.104:8006/temperature", content))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     //return new JsonResult(

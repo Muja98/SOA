@@ -45,6 +45,7 @@ services:
     - "25672:25672"
     - "15671:15671"
     - "15672:15672"
+    restart: always
 
   analytics_service:
     image: ${DOCKER_REGISTRY-}analyticsservice
@@ -67,8 +68,6 @@ services:
     ports:
      - 5003:80
 
-
-
   api_gateway_service:
     image: ${DOCKER_REGISTRY-}apigatewayservice
     build:
@@ -77,3 +76,13 @@ services:
     ports:
      - 5004:80
 
+  webdashboard:
+    image: ${DOCKER_REGISTRY-}webdashboard
+    build:
+      context: .
+      dockerfile: WebDashboard/Dockerfile
+    depends_on: 
+    - data_service
+    - command_service
+    - api_gateway_service
+    restart: always
